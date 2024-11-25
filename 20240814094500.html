@@ -1,0 +1,265 @@
+<!DOCTYPE html><html><head>
+      <title>Fundamentals on UNIX Systems</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      
+        <script type="text/javascript">
+          window.MathJax = ({"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"options":{},"loader":{}});
+        </script>
+        <script type="text/javascript" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" charset="UTF-8"></script>
+        
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  " id="20240814094500">
+      
+<h1 id="unix-filesystem">UNIX filesystem </h1>
+<ul>
+<li>The UNIX filesystem, which forms the basis for Linux filesystems, is a crucial component that distinguishes UNIX and Linux from other operating systems.</li>
+<li>The Linux filesystem, derived from the UNIX filesystem.</li>
+<li>It adheres to the principle that "everything is a file," meaning that directories, devices, and even processes are represented as files within the system.</li>
+<li>It is designed with a few key principles in mind:
+<ul>
+<li>This unified approach simplifies interactions, allowing the use of standard commands and tools for various system components.</li>
+<li>The Linux filesystem is organized hierarchically, resembling an inverted tree with the root directory (/) at the top.</li>
+<li>This structure enables logical organization and easy navigation of files and directories.</li>
+</ul>
+</li>
+<li>Key directories within the Linux filesystem include:
+<ul>
+<li><code>/bin</code>: Contains essential user commands.</li>
+<li><code>/etc</code>: Stores system-wide configuration files.</li>
+<li><code>/home</code>: Houses the home directories of individual users.</li>
+<li><code>/lib</code>: Contains shared libraries required by system programs.</li>
+<li><code>/var</code>: Stores variable data, such as log files and spool directories.</li>
+<li><code>/usr</code>: Contains user programs, libraries, and data not essential for system boot.</li>
+</ul>
+</li>
+</ul>
+<h2 id="benefits">Benefits </h2>
+<ul>
+<li><strong>Logical Organization:</strong> The hierarchical structure allows for intuitive organization of files and directories, making it easy to find and manage data.</li>
+<li><strong>Flexibility and Extensibility:</strong> The "everything is a file" approach provides a consistent interface for interacting with various system components, simplifying system administration and enabling the development of new tools and applications.</li>
+<li><strong>Efficiency and Power:</strong> The use of small, specialized commands and the ability to combine them using pipes and redirection allows for efficient and powerful automation of tasks.</li>
+<li><strong>Security:</strong> The filesystem includes permissions and ownership controls that allow for fine-grained access control to files and directories, ensuring data security and privacy.</li>
+</ul>
+<h2 id="key-directories">Key Directories </h2>
+<ul>
+<li>There are several key directories within the UNIX filesystem, each serving a specific purpose:
+<ul>
+<li><strong>/bin</strong>: This directory houses essential user commands that are frequently used for basic operations and system interactions. Commands like <code>ls</code> (list directory contents), <code>cat</code> (concatenate and display files), <code>cp</code> (copy files), <code>mv</code> (move or rename files), and <code>rm</code> (remove files) reside here, making them readily accessible to all users.</li>
+<li><strong>/boot</strong>: This directory contains critical files required for booting the Linux system. The Linux kernel itself, along with the initial RAM disk (<code>initrd</code>) and bootloader configuration files (such as those for GRUB), are stored here.
+<ul>
+<li>These files are crucial for the system's startup process and should be handled with care.</li>
+</ul>
+</li>
+<li><strong>/dev</strong>: This directory contains special files that represent devices connected to the system.
+<ul>
+<li>These include physical devices like hard drives (<code>/dev/sda</code>), terminals (<code>/dev/tty*</code>), and CD-ROMs (<code>/dev/cd*</code>), as well as virtual or pseudo-devices like random number generators (<code>/dev/random</code>).</li>
+<li>Applications can interact with these devices through their corresponding files in the <code>/dev</code> directory.</li>
+</ul>
+</li>
+<li><strong>/etc</strong>: This directory stores system-wide configuration files.
+<ul>
+<li>These files control the behaviour of various system services and applications, and they are typically plain text files that can be edited with a text editor (with appropriate permissions).</li>
+<li>Examples include <code>/etc/passwd</code> (user account information), <code>/etc/fstab</code> (filesystem mount table), and <code>/etc/apache2/apache2.conf</code> (Apache web server configuration).</li>
+</ul>
+</li>
+<li><strong>/home</strong>: This directory contains the home directories of individual users on the system.
+<ul>
+<li>Each user has their own subdirectory within <code>/home</code>, where they can store their personal files, configuration settings, and other data.</li>
+<li>The root user's home directory is located at <code>/root</code> for security reasons.</li>
+</ul>
+</li>
+<li><strong>/lib</strong>: This directory houses shared libraries that are used by various applications and system programs.
+<ul>
+<li>These libraries provide common functionalities and routines that can be reused by multiple programs, promoting code efficiency and modularity.</li>
+</ul>
+</li>
+<li><strong>/media</strong>: This directory serves as a standard location for automatically mounting removable media, such as USB drives and external hard disks.
+<ul>
+<li>When a removable device is connected, it is typically mounted under a subdirectory within <code>/media</code>, making its contents easily accessible to users.</li>
+</ul>
+</li>
+<li><strong>/mnt</strong>: While largely superseded by <code>/media</code> for automounting, <code>/mnt</code> is still commonly used for manually mounting filesystems, such as those on additional hard drives or network shares.
+<ul>
+<li>It provides a flexible location for temporarily accessing storage devices that are not part of the system's default configuration.</li>
+</ul>
+</li>
+<li><strong>/opt</strong>: This directory is intended for storing optional or add-on application software.
+<ul>
+<li>It provides a standardized location for third-party applications that are not part of the base Linux distribution, making it easier to manage and maintain these additional software packages.</li>
+</ul>
+</li>
+<li><strong>/proc</strong>: This is a special virtual filesystem that provides information about the system's running processes and kernel parameters.
+<ul>
+<li>It is not a physical storage location, but rather an interface to the kernel, allowing users and applications to access real-time system data.</li>
+</ul>
+</li>
+<li><strong>/root</strong>: This is the home directory of the root user, the superuser account with full administrative privileges.
+<ul>
+<li>It is located outside <code>/home</code> for security reasons, as it contains sensitive configuration files and system data.</li>
+</ul>
+</li>
+<li><strong>/sbin</strong>: This directory contains system administration commands and daemons, which are typically used by the root user or other privileged users to manage and configure the system.</li>
+<li><strong>/snap</strong>: This directory is the home for filesystems used by the <code>snapd</code> package management system.
+<ul>
+<li>Snaps are self-contained application packages that include all their dependencies, making them easy to install and manage.</li>
+</ul>
+</li>
+<li><strong>/sys</strong>: This is another virtual filesystem that provides an interface to the kernel, specifically for accessing and managing system hardware and device information.</li>
+<li><strong>/tmp</strong>: This directory is used for storing temporary files created by applications and system processes.
+<ul>
+<li>These files are typically deleted automatically after a certain period or upon system reboot.</li>
+</ul>
+</li>
+<li><strong>/usr</strong>: This directory contains user programs, libraries, and data that are not essential for the system's boot process.
+<ul>
+<li>It is often mounted as a separate filesystem and can be shared across multiple systems using network file sharing protocols like NFS.</li>
+</ul>
+</li>
+<li><strong>/var</strong>: This directory stores variable data that is expected to change frequently during system operation.
+<ul>
+<li>This includes log files (<code>/var/log</code>), spool directories (such as <code>/var/spool/mail</code> for email), and other data generated by system services and applications.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="comparison-to-windows-filesystems">Comparison to Windows Filesystems </h2>
+<ul>
+<li>The UNIX filesystem differs from Windows filesystems in a few key ways:
+<ul>
+<li><strong>No Drive Letters:</strong> Unlike Windows, which uses drive letters (C:, D:, etc.) to represent different storage devices, UNIX mounts all storage devices into a single hierarchical structure, providing a unified view of the filesystem.</li>
+<li><strong>Forward Slashes:</strong> UNIX uses forward slashes (/) as path separators, while Windows uses backslashes ().</li>
+<li><strong>Permissions and Ownership:</strong> UNIX has built-in permissions and ownership controls for files and directories, allowing for fine-grained access control to files and directories, while Windows relies on file and folder attributes for access control.
+<ul>
+<li>Each file and directory has associated permissions for the owner, group, and others, specifying who can read, write, and execute them.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="inode"><code>inode</code> </h2>
+<ul>
+<li>Inodes (short for "index nodes") are the unsung heroes of the Linux filesystem.</li>
+<li>They are like hidden metadata files that store essential information about each file and directory on your system.</li>
+<li>Think of them as the control panels behind the scenes, keeping track of everything related to a file except its name and actual data.</li>
+</ul>
+<h3 id="what-is-inside-an-inode">What is Inside an Inode? </h3>
+<ul>
+<li>
+<p>Each inode typically contains the following information:</p>
+<ul>
+<li><strong>File Type:</strong> Whether it is a regular file, directory, symbolic link, <em>etc.</em></li>
+<li><strong>Permissions:</strong> Who can read, write, and execute the file (owner, group, others).</li>
+<li><strong>Owner and Group:</strong> The user and group associated with the file.</li>
+<li><strong>Size:</strong> The size of the file in bytes.</li>
+<li><strong>Timestamps:</strong> When the file was last accessed, modified, and its inode changed.</li>
+<li><strong>Data Block Pointers:</strong> These pointers tell the filesystem where the actual data for the file is stored on the disk.</li>
+</ul>
+</li>
+<li>
+<p>Inodes play a crucial role in the Linux filesystem:</p>
+<ul>
+<li><strong>Unique Identity:</strong> Each file has a unique <code>inode</code> number, allowing the system to distinguish between files even if they have the same name.</li>
+<li><strong>Efficient Access:</strong> Inodes provide a quick way for the system to locate and access file information without having to scan the entire disk.</li>
+<li><strong>Data Organization:</strong> Inodes help organize the file data by maintaining pointers to the data blocks.</li>
+<li><strong>File System Operations:</strong> Inodes are involved in various file system operations, such as creating, deleting, renaming, and linking files.</li>
+</ul>
+</li>
+</ul>
+<h3 id="inodes-and-links">Inodes and Links </h3>
+<ul>
+<li>Inodes are also closely related to the concept of hard links.</li>
+<li>When you create a hard link, you are essentially creating another filename that points to the same inode as the original file.</li>
+<li>This means both filenames share the same file information and data blocks.</li>
+</ul>
+<h3 id="working-with-inodes">Working with Inodes </h3>
+<ul>
+<li>To access the inode metadata of a file, you can use the <code>stat</code> command.</li>
+<li>The <code>stat</code> command is a powerful tool for retrieving detailed information about a file, including its inode metadata.</li>
+<li>Think of it as a supercharged <code>ls -l</code> command that dives deeper into the file's properties.</li>
+<li>The basic syntax is simple:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">stat</span> filename
+</code></pre><ul>
+<li>Additionally, <code>ls -i</code> can show the Inode number of a file.</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>$ <span class="token function">ls</span> <span class="token parameter variable">-i</span> myfile.txt
+<span class="token number">2376895</span> myfile.txt
+</code></pre><ul>
+<li>You can also use the <code>find</code> command to search for files by their inode number.</li>
+<li>For example, the following command will find all files with inode number <code>2376895</code>:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-inum</span> <span class="token number">2376895</span>
+</code></pre><ul>
+<li>This command will search the current directory and all subdirectories for files with inode number <code>2376895</code>.</li>
+</ul>
+<h4 id="example">Example </h4>
+<ul>
+<li>Let us say you have a file named <code>myfile.txt</code>.</li>
+<li>To view its inode metadata, you would run:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">stat</span> myfile.txt
+</code></pre><ul>
+<li>The output of <code>stat</code> will look something like this:</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>File: 'myfile.txt'
+Size: 1234 Blocks: 8 IO Block: 4096 regular file
+Device: 801h/2049d Inode: 1234567 Links: 1
+Access: (0644/-rw-r--r--) Uid: (1000/johndoe) Gid: (1000/johndoe)
+Access: 2024-03-25 10:00:00.000000000 -0400
+Modify: 2024-03-26 11:00:00.000000000 -0400
+Change: 2024-03-27 12:00:00.000000000 -0400
+ Birth: -
+</code></pre><ul>
+<li>The output provides a wealth of information, including:
+<ul>
+<li><strong>File:</strong> The name of the file.</li>
+<li><strong>Size:</strong> The size of the file in bytes.</li>
+<li><strong>Blocks:</strong> The number of blocks allocated to the file on the disk.</li>
+<li><strong>IO Block:</strong> The size of the input/output blocks used for the file.</li>
+<li><strong>Device:</strong> The device on which the file is stored.</li>
+<li><strong>Inode:</strong> The inode number of the file.</li>
+<li><strong>Links:</strong> The number of hard links to the file.</li>
+<li><strong>Access:</strong> The access permissions of the file (owner, group, others).</li>
+<li><strong>Uid:</strong> The user ID and username of the file's owner.</li>
+<li><strong>Gid:</strong> The group ID and group name of the file's group owner.</li>
+<li><strong>Access:</strong> The last time the file was accessed.</li>
+<li><strong>Modify:</strong> The last time the file's content was modified.</li>
+<li><strong>Change:</strong> The last time the file's attributes (metadata) were changed.</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

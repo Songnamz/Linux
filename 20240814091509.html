@@ -1,0 +1,142 @@
+<!DOCTYPE html><html><head>
+      <title>Fundamentals on UNIX Systems</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////home/sebastian/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.8.13/crossnote/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  " id="20240814091509">
+      
+<h1 id="fundamentals-on-unix-systems">Fundamentals on UNIX Systems </h1>
+<ul>
+<li>
+<p>The design of Unix-based systems, which includes Linux distributions like Ubuntu, is deeply rooted in the following core principles:</p>
+<ol>
+<li><strong>The Unix Filesystem:</strong> The <a href="20240814094500.html">Unix filesystem</a> employs a hierarchical structure of directories (folders within folders) that provides an intuitive way to organize files and directories.
+<ul>
+<li>It also simplifies access to hardware devices like disks and tapes by representing them as files within the directory structure, making them easier to manage.</li>
+</ul>
+</li>
+<li><strong>Input/Output Redirection and Pipes:</strong> The ability to redirect the output of one command to a file (using <code>&gt;</code>) or to the input of another command (using <code>|</code>) is a defining characteristic of Unix-based systems.
+<ul>
+<li>This modularity allows users to chain together simple commands to perform complex tasks, promoting code reuse and flexibility.</li>
+</ul>
+</li>
+<li><strong>Portability:</strong> Unix was designed to be portable across different hardware platforms.
+<ul>
+<li>This was achieved by abstracting hardware-specific details into device drivers, allowing applications to interact with a consistent interface regardless of the underlying hardware.</li>
+<li>The use of the C programming language further enhanced portability, as C code can be compiled to run on various architectures.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>These principles have had a profound impact on the evolution and success of Unix-based systems:</p>
+<ul>
+<li><strong>Modularity and Code Reuse:</strong> The combination of the filesystem structure, I/O redirection, and pipes encourages a modular approach to software development.
+<ul>
+<li>This has led to a rich ecosystem of small, specialized utilities that can be combined in countless ways, fostering code reuse and enabling users to build powerful solutions from existing components.</li>
+</ul>
+</li>
+<li><strong>Portability and Flexibility:</strong> The focus on portability has allowed Unix-based systems to adapt to a wide range of hardware platforms, from mainframes to embedded devices.
+<ul>
+<li>This flexibility has been instrumental in the widespread adoption of Linux, as it can run on virtually any hardware configuration.</li>
+</ul>
+</li>
+<li><strong>Collaboration and Community:</strong> The open nature of Unix-based systems, coupled with the tools for sharing and collaborating on code, has fostered a strong sense of community and collaboration among developers.
+<ul>
+<li>This has led to rapid innovation and continuous improvement of the software, as well as the development of a vast ecosystem of open-source software.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="unix-based-systems">UNIX-based Systems </h2>
+<ul>
+<li>
+<p>The main UNIX-based systems available today are:</p>
+<ul>
+<li><strong>macOS:</strong> The <a href="https://www.apple.com/macos/">operating system used by Apple</a> computers, which is built on a derivative of BSD (Berkeley Software Distribution) UNIX.</li>
+<li><strong>Linux:</strong> The open-source operating system that has become widely popular and is used in a vast array of devices, from servers to smartphones.
+<ul>
+<li>Some Linux distributions are:
+<ul>
+<li><a href="http://www.debian.org/">Debian</a>: One of the oldest and most influential Linux distributions, known for its stability and adherence to free software principles. It serves as the foundation for many other distributions, including Ubuntu.</li>
+<li><a href="https://ubuntu.com/">Ubuntu</a>: Perhaps the most popular Linux distribution, sponsored by Canonical Ltd. It is known for its user-friendliness, regular release cycle, and strong community support. It is derived from Debian and offers various flavours for different use cases.</li>
+<li><a href="https://linuxmint.com/">Mint</a>: Another popular Debian-based distribution that emphasizes ease of use and comes with various desktop environments and pre-installed software.</li>
+<li><a href="https://www.kali.org/">Kali Linux</a>: A Debian-based distribution specifically designed for penetration testing and security auditing. It includes a wide range of tools for network analysis, vulnerability assessment, and exploitation.</li>
+<li><a href="https://www.centos.org/">CentOS</a>: A community-supported distribution that is closely aligned with Red Hat Enterprise Linux (RHEL). It offers a stable and reliable platform for server environments and is often used as a free alternative to RHEL.</li>
+<li><a href="https://fedoraproject.org/">Fedora</a>: A community-driven distribution sponsored by Red Hat. It is known for its focus on innovation and cutting-edge technologies, typically serving as a testing ground for new features that may eventually be incorporated into RHEL.</li>
+<li><a href="https://www.knopper.net/knoppix/index-en.html">KNOPPIX</a>: A live CD Linux distribution that can be booted directly from a CD or USB drive without requiring installation on the hard drive. It is typically used for system rescue, data recovery, or trying out Linux without making any permanent changes to the computer.</li>
+<li><a href="https://www.gentoo.org/">Gentoo</a>: A highly customizable Linux distribution that allows users to compile their own software packages from source code, providing a high degree of control over the system's configuration and performance.</li>
+<li><a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">Red Hat Enterprise Linux (RHEL)</a>: This is Red Hat's flagship product, a commercially supported Linux distribution designed for enterprise environments. It emphasizes stability, security, and long-term support, making it a popular choice for businesses and organizations that require a reliable and well-maintained operating system.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>BSD:</strong> The Berkeley Software Distribution, which is another family of open-source Unix-like operating systems.
+<ul>
+<li>The three major BSD projects include: <a href="https://www.freebsd.org/">FreeBSD</a>, <a href="https://www.netbsd.org/">NetBSD</a>, and <a href="https://www.openbsd.org/">OpenBSD</a>.</li>
+</ul>
+</li>
+<li><strong>Android:</strong>
+<ul>
+<li><strong>Linux Kernel:</strong> Android's core is built upon a modified version of the Linux kernel. This kernel handles fundamental tasks such as memory management, process scheduling, and hardware interaction.</li>
+<li><strong>Open Source:</strong> Like Linux, Android is largely open source, allowing developers and manufacturers to modify and customize it for their specific needs.</li>
+<li><strong>Shared Lineage:</strong> Both Android and Linux trace their roots back to the Unix philosophy of modularity, portability, and powerful command-line tools.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="structure">Structure </h2>
+<ul>
+<li>
+<p>UNIX<br>
+<img src="20240814091509-1.png" alt="UNIX Structure"></p>
+<ul>
+<li><strong>Kernel</strong>: The kernel is the core of the operating system, responsible for managing hardware resources, handling processes, and providing essential services. It acts as the bridge between the hardware and the software, ensuring that applications can interact with the underlying system in a controlled and secure manner.</li>
+<li><strong>Shell</strong>: The shell is a command-line interface that allows users to interact with the system by typing commands. It provides a powerful and flexible way to execute programs, manage files, and configure the system.</li>
+<li><strong>Utilities and Applications</strong>: UNIX-based systems come with a rich set of utilities and applications that perform various tasks, from file management and text editing to network communication and system administration. These tools are designed to be modular and composable, allowing users to combine them in powerful ways to achieve their goals.</li>
+<li><strong>Filesystems</strong>: The filesystem is the structure in which all the information on the computer is stored. It is organized hierarchically, with the root directory (/) at the top. This structure provides a logical and organized way to store and access files and directories.</li>
+<li><strong>Processes</strong>: Processes are instances of running programs. The operating system manages these processes, allocating resources such as CPU time and memory, and ensuring that they can run concurrently without interfering with each other.</li>
+<li><strong>Users and Groups</strong>: The system supports multiple users and groups, allowing for secure and controlled access to system resources. Each user has their own home directory and can be assigned to one or more groups, which can be used to grant shared access to files and directories.</li>
+<li><strong>Services</strong>: Services, or daemons, are background processes that provide various functionalities, such as network connectivity, printing, and system logging. These services are typically started at boot time and run continuously in the background, responding to requests from users and other systems.</li>
+</ul>
+</li>
+<li>
+<p>Linux</p>
+</li>
+</ul>
+<p><img src="20240814091509-3.png" alt="Linux Structure"></p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

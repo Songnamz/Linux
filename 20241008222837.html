@@ -1,0 +1,325 @@
+<!DOCTYPE html><html><head>
+      <title>User permissions</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      
+        <script type="text/javascript">
+          window.MathJax = ({"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"options":{},"loader":{}});
+        </script>
+        <script type="text/javascript" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" charset="UTF-8"></script>
+        
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,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") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  " id="20241008222837">
+      
+<h1 id="user-permissions">User Permissions </h1>
+<hr>
+<h2 id="understanding-file-permissions-and-ownership">Understanding File Permissions and Ownership </h2>
+<ul>
+<li>After you have worked with Linux for a while, you are almost sure to get a Permission denied message.
+<ul>
+<li>If not, try this command (to be executed as non-root user): <code>cd /root/</code></li>
+</ul>
+</li>
+<li>Permissions associated with files and directories in Linux were designed to keep users from accessing other users' private files and to protect important system files.</li>
+<li>File permissions are a fundamental security feature in Linux. They help:
+<ul>
+<li>Protect user privacy by preventing unauthorized access to files.</li>
+<li>Maintain system integrity by restricting modification of critical system files.</li>
+<li>Enable collaboration by allowing controlled access to shared files.</li>
+</ul>
+</li>
+<li>The nine bits assigned to each file for permissions define the access that you and others have to your file.</li>
+<li>Permission bits for a regular file appear as <code>-rwxrwxrwx</code>.</li>
+<li>Those bits are used to define who can read, write, or execute the file.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a regular file, a dash appears in front of the nine-bit permissions indicator.<br>
+Instead of a dash, you might see a d (for a directory), l (for a symbolic link), b (for a block device), c (for a character device), s (for a socket), or p (for a named pipe).</p>
+</div>
+<ul>
+<li>Of the nine-bit permissions, the first three bits apply to the owner's permission, the next three apply to the group assigned to the file, and the last three apply to all others.</li>
+</ul>
+<p><img src="20241008222837-2.png" alt="alt text"></p>
+<p><img src="20241008222837-3.png" alt="alt text"></p>
+<ul>
+<li>
+<p>The <code>r</code> stands for read, the <code>w</code> stands for write, and the <code>x</code> stands for execute permissions.</p>
+</li>
+<li>
+<p>If a dash appears instead of the letter, it means that permission is turned off for that associated read, write, or execute bit.</p>
+</li>
+<li>
+<p>Because files and directories are different types of elements, read, write, and execute permissions on files and directories mean different things.</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Permission</th>
+<th style="text-align:left">File</th>
+<th style="text-align:left">Directory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Read</td>
+<td style="text-align:left">View what's in the file.</td>
+<td style="text-align:left">See what files and subdirectories it contains.</td>
+</tr>
+<tr>
+<td style="text-align:left">Write</td>
+<td style="text-align:left">Change the file's content, rename it, or delete it.</td>
+<td style="text-align:left">Add files or subdirectories to the directory. Remove files or directories from the directory.</td>
+</tr>
+<tr>
+<td style="text-align:left">Execute</td>
+<td style="text-align:left">Run the file as a program.</td>
+<td style="text-align:left">Change to the directory as the current directory, search through the directory, or execute a program from the directory. Access file metadata (file size, time stamps, and so on) of files in that directory.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="owner">Owner </h3>
+<ul>
+<li>The owner of a file is typically the user who created it.</li>
+<li>They have the most control over the file's permissions.</li>
+<li>Think of it like owning a car; you can decide who gets to drive it, who can ride in it, and who can't touch it at all.</li>
+</ul>
+<h3 id="group">Group </h3>
+<ul>
+<li>
+<p>Files in Linux can be assigned to a group.</p>
+</li>
+<li>
+<p>Think of groups in Linux as exclusive clubs or teams.</p>
+<ul>
+<li>Each file and directory on your system is assigned to a specific group.</li>
+<li>Just like a club has members, a group has users as its members.</li>
+<li>Now, here is the key: members of a group can have different permissions on a file than those who are not in the group.</li>
+</ul>
+</li>
+<li>
+<p>Groups provide a granular level of control over file access.</p>
+<ul>
+<li>Imagine you are working on a project with a team.</li>
+<li>You want your team members to be able to edit and modify project files, but you don't want anyone else on the system to mess with them.</li>
+<li>This is where groups come in handy!</li>
+<li>By assigning the project files to a specific group and adding your team members to that group, you can grant them the necessary permissions (like read and write) while restricting access for others.</li>
+</ul>
+</li>
+</ul>
+<h4 id="types-of-groups">Types of Groups </h4>
+<ul>
+<li>Linux has different types of groups:
+<ul>
+<li><strong>Primary Group:</strong>
+<ul>
+<li>Each user has a primary group, usually with the same name as the username.</li>
+<li>When a user creates a file, it is automatically assigned to their primary group.</li>
+</ul>
+</li>
+<li><strong>Secondary Groups:</strong>
+<ul>
+<li>A user can belong to multiple secondary groups.</li>
+<li>This allows for more flexible permission management in various scenarios.</li>
+</ul>
+</li>
+<li><strong>System Groups:</strong>
+<ul>
+<li>Linux has built-in system groups for specific purposes, like <code>wheel</code> (for administrative access) or <code>audio</code> (for managing audio devices).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="managing-groups">Managing Groups </h4>
+<ul>
+<li>You can use commands like <code>groups</code> to see a user's groups, <code>groupadd</code> to create new groups, <code>groupdel</code> to delete groups, and <code>usermod</code> to add or remove users from groups.</li>
+</ul>
+<h3 id="others">Others </h3>
+<ul>
+<li>
+<p>Everyone else who is not the owner or a member of the group falls into the "others" category.</p>
+</li>
+<li>
+<p>These are like the general public when it comes to your file.</p>
+</li>
+<li>
+<p>You can set permissions to allow them some access (like read-only), or you can completely restrict their access.</p>
+</li>
+<li>
+<p>In the context of file permissions in Linux, "others" refers to any user on the system who is not the owner of the file and does not belong to the group associated with the file.</p>
+</li>
+<li>
+<p>These are essentially the "outsiders" when it comes to accessing the file.</p>
+</li>
+<li>
+<p>Even though you might primarily be concerned about the permissions for yourself (the owner) and your group, it's still important to consider the permissions for "others."</p>
+<ul>
+<li>Here is why:
+<ul>
+<li><strong>Public Access:</strong>
+<ul>
+<li>If you want to make a file accessible to everyone on the system, you need to grant appropriate permissions to the "others" category.</li>
+<li>For example, if you have a script that you want anyone to be able to execute, you would grant execute permission to "others"</li>
+</ul>
+</li>
+<li><strong>Security:</strong>
+<ul>
+<li>By default, files are often created with some level of permission for "others."</li>
+<li>If you don't want anyone outside of the owner and group to have any access to the file, you need to explicitly remove the permissions for "others."</li>
+<li>This is important for protecting sensitive or confidential information.</li>
+</ul>
+</li>
+<li>Shared Resources:
+<ul>
+<li>In some cases, you might have files or directories that are intended to be shared with a broader audience, but not necessarily everyone on the system.</li>
+<li>By carefully setting permissions for "others," you can control the level of access they have, such as read-only or execute-only.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="viewing-permissions">Viewing Permissions </h2>
+<ul>
+<li>As noted earlier, you can see the permission for any file or directory by typing the <code>ls -ld</code> command.
+<ul>
+<li><code>-l</code>: use a long listing format.</li>
+<li><code>-d</code>: list directories themselves, not their contents.</li>
+</ul>
+</li>
+<li>The named file or directory appears as those shown in this example:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>$ <span class="token function">ls</span> <span class="token parameter variable">-ld</span> ch3 <span class="token builtin class-name">test</span>
+-rw-rw-r-- <span class="token number">1</span> joe sales <span class="token number">4983</span> Jan <span class="token number">18</span> <span class="token number">22</span>:13 ch3
+drwxr-xr-x <span class="token number">2</span> joe sales <span class="token number">1024</span> Jan <span class="token number">24</span> <span class="token number">13</span>:47 <span class="token builtin class-name">test</span>
+</code></pre><ul>
+<li>The first line shows that the <code>ch3</code> file has read and write permission for the owner and the group.</li>
+<li>All other users have read permission, which means that they can view the file but cannot change its contents or remove it.</li>
+<li>The second line shows the <code>test</code> directory (indicated by the letter <code>d</code> before the permission bits).</li>
+<li>The owner has read, write, and execute permissions while the group and other users have only read and execute permissions.</li>
+<li>As a result, the owner can add, change, or delete files in that directory, and everyone else can only read the contents, change to that directory, and list the contents of the directory. (If you had not used the -d options to <code>ls</code>, you would have listed files in the test directory instead of permissions of that directory.)</li>
+<li>Additionally:
+<ul>
+<li><code>joe</code> is the owner.</li>
+<li><code>sales</code> is the group associated with the file/directory.</li>
+<li><code>4983</code> and <code>1024</code> is the size of the file/directory in bytes.</li>
+<li><code>Jan 18 22:13</code> and <code>Jan 24 13:47</code> is the last modification to the file/directory.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="changing-permissions-with-chmod-numbers">Changing Permissions with <code>chmod</code> (Numbers)** </h2>
+<ul>
+<li>If you own a file, you can use the <code>chmod</code> command to change the permission on it.</li>
+<li>In one method of doing this, each permission (read, write, and execute) is assigned a number — r=4, w=2, and x=1 — and you use each set's total number to establish the permission.
+<ul>
+<li>For example, to make permissions wide open for yourself as owner, you would set the first number to 7 (4+2+1), and then you would give the group and others read-only permission by setting both the second and third numbers to 4 (4+0+0), so that the final number is 744.</li>
+</ul>
+</li>
+<li>Any combination of permissions can result from 0 (no permission) through 7 (full permission).</li>
+</ul>
+<h3 id="examples">Examples </h3>
+<ul>
+<li>The following <code>chmod</code> command results in this permission: <code>rwxrwxrwx</code></li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>$ <span class="token function">chmod</span> <span class="token number">777</span> filename.ext
+</code></pre><ul>
+<li>The following <code>chmod</code> command results in this permission: <code>rwxr-xr-x</code></li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>$ <span class="token function">chmod</span> <span class="token number">755</span> filename.ext
+</code></pre><ul>
+<li>The following <code>chmod</code> command results in this permission: <code>rw-r--r--</code></li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>$ <span class="token function">chmod</span> <span class="token number">644</span> filename.ext
+</code></pre><p>The following <code>chmod</code> command results in this permission: <code>---------</code></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>$ <span class="token function">chmod</span> 000 filename.ext
+</code></pre><h3 id="more-on-chmod">More on <code>chmod</code> </h3>
+<ul>
+<li>The <code>chmod</code> command also can be used recursively.</li>
+<li>For example, suppose that you wanted to give an entire directory structure 755 permissions (<code>rwxr-xr-x</code>), starting at the <code>$HOME/myapps</code> directory.</li>
+<li>To do that, you could use the <code>-R</code> option, as follows:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>$ <span class="token function">chmod</span> <span class="token parameter variable">-R</span> <span class="token number">755</span> <span class="token environment constant">$HOME</span>/myapps
+</code></pre><ul>
+<li>All files and directories below, and including, the <code>myapps</code> directory in your home directory will have 755 permissions set.</li>
+</ul>
+<h2 id="exercises">Exercises </h2>
+<ol>
+<li>
+<p><strong>Permission Investigation:</strong></p>
+<ul>
+<li>Use the <code>ls -l</code> command to examine the permissions of various files and directories on your system.</li>
+<li>Try to understand the permission strings and what they imply about access rights.</li>
+</ul>
+</li>
+<li>
+<p><strong>File Lockdown:</strong></p>
+<ul>
+<li>Create a file named <code>secret.txt</code> and make it so that only you (the owner) can read and write to it.</li>
+<li>No one else, not even those in your group, should have any access.</li>
+</ul>
+</li>
+<li>
+<p><strong>Group Collaboration:</strong> Create a directory named <code>project</code> and set the permissions so that:</p>
+<ul>
+<li>You have full control (read, write, execute).</li>
+<li>Members of the group <code>developers</code> have read and write access. (You should create that group -- <em>i.e.</em> <code>groupadd</code>)</li>
+<li>Everyone else has no access at all.</li>
+</ul>
+</li>
+<li>
+<p><strong>Executable Script:</strong></p>
+<ul>
+<li>Write a simple <code>bash</code> script, save it as <code>myscript.sh</code>, and then make it executable for everyone.</li>
+</ul>
+</li>
+<li>
+<p><strong>Directory Exploration:</strong></p>
+<ul>
+<li>Set the permissions on a directory so that anyone can list its contents and access files within it, but only you (the owner) can create new files or delete existing ones within that directory.</li>
+</ul>
+</li>
+<li>
+<p><strong>Recursive Change:</strong></p>
+<ul>
+<li>You have a directory named <code>archive</code> containing many subdirectories and files.</li>
+<li>Change the permissions of the entire directory structure (including all subdirectories and files) so that everyone has read-only access.</li>
+</ul>
+</li>
+</ol>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

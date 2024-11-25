@@ -1,0 +1,2481 @@
+<!DOCTYPE html><html><head>
+      <title>`bash` Scripting</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      
+        <script type="text/javascript">
+          window.MathJax = ({"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"options":{},"loader":{}});
+        </script>
+        <script type="text/javascript" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" charset="UTF-8"></script>
+        
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  " id="20240916054611">
+      
+<h1 id="bash-scripting"><code>bash</code> Scripting </h1>
+<h2 id="core-concepts-and-structure">Core Concepts and Structure </h2>
+<ul>
+<li><strong>Shebang:</strong>
+<ul>
+<li>The <code>#!/bin/bash</code> line at the script's beginning declares <code>bash</code> as the interpreter.</li>
+</ul>
+</li>
+<li><strong>Comments:</strong>
+<ul>
+<li>Lines starting with <code>#</code> are ignored, used for explanations and documentation.</li>
+</ul>
+</li>
+<li><strong>Command Execution:</strong>
+<ul>
+<li>Any Linux command can be run within a script.</li>
+</ul>
+</li>
+</ul>
+<h3 id="variables">Variables </h3>
+<ul>
+<li>
+<p>In essence, variables are like labeled containers that store information within your script.</p>
+</li>
+<li>
+<p>Think of them as little boxes, each with a unique name, where you can put things you will need later.</p>
+</li>
+<li>
+<p>These "things" can be numbers, text, filenames, or even the output of commands.</p>
+</li>
+<li>
+<p>Why do we use variables?</p>
+<ul>
+<li><strong>Reusability:</strong>
+<ul>
+<li>Store a value once and use it multiple times, making your scripts more concise and easier to maintain.</li>
+</ul>
+</li>
+<li><strong>Flexibility:</strong>
+<ul>
+<li>Change the value of a variable and affect multiple parts of your script without rewriting everything.</li>
+</ul>
+</li>
+<li><strong>Readability:</strong>
+<ul>
+<li>Use descriptive variable names to make your code self-documenting and easier to understand.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Declaring and assigning values:</p>
+<ul>
+<li><code>bash</code> is quite relaxed about variables.</li>
+<li>You don't need to formally declare them; you simply assign a value, and the variable springs into existence.</li>
+<li><strong>Basic Assignment:</strong> <code>my_variable="Hello, world!"</code></li>
+<li><strong>Command Substitution:</strong> <code>current_date=$(date)</code> (captures the output of the <code>date</code> command)</li>
+<li><strong>Arithmetic Expansion:</strong> <code>result=$((5 + 3))</code> (performs calculation)</li>
+</ul>
+</li>
+<li>
+<p>To use the value stored in a variable, prefix its name with a dollar sign (<code>$</code>).</p>
+<ul>
+<li><code>echo "The current date is: $current_date"</code></li>
+</ul>
+</li>
+<li>
+<p>Important considerations:</p>
+<ul>
+<li><strong>Case Sensitivity:</strong> <code>my_variable</code> and <code>MY_VARIABLE</code> are different variables.</li>
+<li><strong>Quoting:</strong>
+<ul>
+<li>Always quote variables (<em>e.g.</em>, <code>"$my_variable"</code>) to prevent unintended word splitting and other issues, especially when dealing with filenames or paths.</li>
+</ul>
+</li>
+<li><strong>Scope:</strong>
+<ul>
+<li>Variables are typically global by default, meaning they're accessible throughout your script.</li>
+<li>You can create local variables within functions using the <code>local</code> keyword.</li>
+</ul>
+</li>
+<li><strong>Special Variables:</strong>
+<ul>
+<li><code>bash</code> has many built-in variables (<em>e.g.</em>, <code>$HOME</code>, <code>$USER</code>, <code>$PWD</code>) that provide useful information about the environment.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Example: a simple greeting script — This script prompts the user for their name, stores it in the <code>user_name</code> variable, and then uses that variable to create a personalized greeting.</p>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Get user's name</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Please enter your name:"</span>
+<span class="token builtin class-name">read</span> user_name
+
+<span class="token comment"># Greet the user</span>
+<span class="token assign-left variable">greeting</span><span class="token operator">=</span><span class="token string">"Hello, <span class="token variable">$user_name</span>! Welcome to my script."</span>
+<span class="token builtin class-name">echo</span> <span class="token variable">$greeting</span>
+</code></pre><ul>
+<li>Beyond the basics:
+<ul>
+<li><strong>Arrays:</strong> Store multiple values in a single variable.</li>
+<li><strong>Parameter Expansion:</strong>  Perform advanced string manipulations and substitutions on variables.</li>
+<li><strong>Debugging:</strong> Use <code>echo</code> statements or the <code>set -x</code> option to trace variable values during script execution.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="inputoutput-and-control-flow">Input/Output and Control Flow </h2>
+<hr>
+<h3 id="echo"><code>echo</code> </h3>
+<ul>
+<li>The <code>echo</code> command is a cornerstone of <code>bash</code> scripting, serving as the primary tool for displaying text on the terminal.</li>
+<li>It is a built-in command, meaning it is directly integrated into the <code>bash</code> shell itself, making it readily available without needing any external programs.</li>
+<li>At its core, <code>echo</code> simply prints its arguments to the standard output, typically your terminal screen.</li>
+<li>Here is the fundamental syntax:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">echo</span> <span class="token punctuation">[</span>options<span class="token punctuation">]</span> <span class="token punctuation">[</span>string <span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+</code></pre><ul>
+<li><code>options</code>: Optional flags that modify <code>echo</code>'s behavior (we will explore some key options later).</li>
+<li><code>string ...</code>: The text or variables you want to display, separated by spaces.</li>
+</ul>
+<h4 id="example">Example </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">echo</span> <span class="token string">"Hello, world!"</span>
+</code></pre><ul>
+<li>
+<p>This will print the message "Hello, world!" to your terminal.</p>
+</li>
+<li>
+<p>Key Options:</p>
+<ul>
+<li><code>-n</code>:
+<ul>
+<li>Suppresses the newline character that <code>echo</code> usually adds at the end of its output.</li>
+<li>This is useful when you want to keep the cursor on the same line after printing, perhaps for a prompt.</li>
+</ul>
+</li>
+<li><code>-e</code>:
+<ul>
+<li>Enables interpretation of backslash escape sequences.</li>
+<li>This allows you to include special characters like tabs (<code>\t</code>), newlines (<code>\n</code>), and even audible bells (<code>\a</code>) in your output.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="example-with-options">Example with Options </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">echo</span> <span class="token parameter variable">-e</span> <span class="token string">"This is a line.<span class="token entity" title="\n">\n</span>This is another line.<span class="token entity" title="\a">\a</span>"</span> 
+</code></pre><ul>
+<li>This will print two lines of text, with a newline between them, and then produce a beep sound.</li>
+</ul>
+<h4 id="beyond-the-basics">Beyond the Basics </h4>
+<ul>
+<li><strong>Variable Expansion:</strong>
+<ul>
+<li><code>echo</code> seamlessly handles variable expansion.</li>
+<li>If you include variables within the string, their values will be substituted during output.</li>
+</ul>
+</li>
+<li><strong>Command Substitution:</strong>
+<ul>
+<li>You can embed the output of commands directly into <code>echo</code>'s output using command substitution (<code>$(command)</code> or backticks).</li>
+</ul>
+</li>
+<li><strong>Redirection:</strong>
+<ul>
+<li><code>echo</code>'s output can be redirected to files or piped to other commands, making it a versatile tool for text manipulation.</li>
+</ul>
+</li>
+</ul>
+<h4 id="example-with-expansions">Example with Expansions </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token assign-left variable">user</span><span class="token operator">=</span><span class="token string">"Alice"</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Hello, <span class="token variable">$user</span>! Today is <span class="token variable"><span class="token variable">$(</span><span class="token function">date</span><span class="token variable">)</span></span>."</span>
+</code></pre><ul>
+<li>This will print a personalized greeting with the current date and time.</li>
+</ul>
+<h4 id="important-considerations">Important Considerations </h4>
+<ul>
+<li><strong>Quoting:</strong>
+<ul>
+<li>Be mindful of quoting when using <code>echo</code> with variables or command substitution.</li>
+<li>Double quotes allow some expansions (like variables), while single quotes prevent all expansions.</li>
+</ul>
+</li>
+<li><strong>Portability:</strong>
+<ul>
+<li><code>echo</code> is a standard command available in virtually all Unix-like shells, making it highly portable across different systems.</li>
+</ul>
+</li>
+</ul>
+<h4 id="beyond-echo">Beyond <code>echo</code> </h4>
+<ul>
+<li>While <code>echo</code> is the workhorse for simple text output, <code>bash</code> offers another powerful command for formatted output: <code>printf</code>.</li>
+<li><code>printf</code> provides more precise control over formatting, especially when dealing with numbers, dates, and complex layouts.</li>
+</ul>
+<hr>
+<h3 id="read"><code>read</code> </h3>
+<ul>
+<li>
+<p>What is <code>read</code>?</p>
+<ul>
+<li>In essence, <code>read</code> is your script's way of interacting with the user.</li>
+<li>It allows you to pause the script's execution and wait for the user to type something on the keyboard.</li>
+<li>Whatever the user enters is then captured and stored in one or more variables that you specify.</li>
+</ul>
+</li>
+<li>
+<p>Why do we need to use <code>read</code> for?</p>
+<ul>
+<li><strong>User Input:</strong>
+<ul>
+<li>Gather information from the user, such as their name, preferences, or choices, to make your scripts more dynamic and interactive.</li>
+</ul>
+</li>
+<li><strong>File Processing:</strong>
+<ul>
+<li>Read data from files line by line, making it possible to process large amounts of text efficiently.</li>
+</ul>
+</li>
+<li><strong>Flexibility:</strong>
+<ul>
+<li>Combine <code>read</code> with other commands and control structures to create complex interactive scripts.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Basic syntax:</p>
+<ul>
+<li>The simplest form of <code>read</code> is:</li>
+</ul>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">read</span> variable_name
+</code></pre><ul>
+<li>
+<p>This will wait for the user to type a line of text, and then store that entire line in the variable <code>variable_name</code>.</p>
+</li>
+<li>
+<p>Example: A simple greeting.</p>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">"Please enter your name:"</span>
+<span class="token builtin class-name">read</span> name
+
+<span class="token builtin class-name">echo</span> <span class="token string">"Hello, <span class="token variable">$name</span>!"</span>
+</code></pre><ul>
+<li>
+<p>Key options:</p>
+<ul>
+<li><code>-p "prompt"</code>: Provides a prompt string to guide the user.</li>
+<li><code>-r</code>: Prevents backslash escapes from being interpreted, useful when reading raw input.</li>
+<li><code>-s</code>: Silent mode; doesn't echo input to the screen (good for passwords).</li>
+<li><code>-t seconds</code>: Sets a timeout; if the user doesn't input within the specified time, <code>read</code> exits with a non-zero status.</li>
+<li><code>-a array_name</code>: Reads input into an array, splitting it into elements based on whitespace.</li>
+</ul>
+</li>
+<li>
+<p>Example: Reading multiple values.</p>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"Enter your first and last name: "</span> first_name last_name
+
+<span class="token builtin class-name">echo</span> <span class="token string">"Your full name is: <span class="token variable">$first_name</span> <span class="token variable">$last_name</span>"</span>
+</code></pre><ul>
+<li>Reading from files:
+<ul>
+<li>You can redirect a file into <code>read</code> to process it line by line.</li>
+</ul>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token keyword keyword-while">while</span> <span class="token builtin class-name">read</span> line<span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Processing line: <span class="token variable">$line</span>"</span>
+<span class="token keyword keyword-done">done</span> <span class="token operator">&lt;</span> input_file.txt
+</code></pre><h4 id="word-splitting">Word Splitting </h4>
+<ul>
+<li>By default, <code>read</code> splits input into words based on whitespace (spaces, tabs, and newlines).</li>
+<li>You can control this behaviour using the <code>IFS</code> (Internal Field Separator) variable.</li>
+<li>When <code>read</code> processes input, it splits the input into words based on whitespace characters.</li>
+<li>Each word is then assigned to a different variable.</li>
+<li>Now, Let us say we have a file named <code>data.txt</code> with colon-separated values:</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>name:age:city
+Alice:25:New York
+Bob:30:London
+</code></pre><ul>
+<li>We want to read each line of this file and assign the values to variables <code>name</code>, <code>age</code>, and <code>city</code>.</li>
+<li>Here is how we can do it:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token keyword keyword-while">while</span> <span class="token assign-left variable"><span class="token environment constant">IFS</span></span><span class="token operator">=</span><span class="token string">':'</span> <span class="token builtin class-name">read</span> <span class="token parameter variable">-r</span> name age city<span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Name: <span class="token variable">$name</span>, Age: <span class="token variable">$age</span>, City: <span class="token variable">$city</span>"</span>
+<span class="token keyword keyword-done">done</span> <span class="token operator">&lt;</span> data.txt
+</code></pre><ul>
+<li>In this script:</li>
+</ul>
+<ol>
+<li>We set <code>IFS</code> to a colon (<code>:</code>) before the <code>read</code> command. This tells <code>read</code> to split the input based on colons instead of whitespace.</li>
+<li>The <code>-r</code> option tells <code>read</code> to treat backslashes as literal characters, preventing any unwanted escape sequence interpretation.</li>
+<li>We use a <code>while</code> loop to read the file line by line.</li>
+<li>Inside the loop, we print the values of the variables.</li>
+</ol>
+<ul>
+<li>The output of this script will be:</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>Name: Alice, Age: 25, City: New York
+Name: Bob, Age: 30, City: London
+</code></pre><ul>
+<li>By temporarily changing the <code>IFS</code> variable, we can instruct the <code>read</code> command to split input based on a specific delimiter, making it adaptable to various data formats.</li>
+<li>This technique is particularly useful when dealing with structured data files like CSV or custom delimited files.</li>
+</ul>
+<h4 id="subshells-and-pipes">Subshells and Pipes </h4>
+<ul>
+<li>When you use <code>read</code> within a pipeline, it often runs in a <em>subshell</em>.</li>
+<li>Think of a subshell as a separate, temporary shell environment created by the main shell to execute a command or a group of commands.</li>
+<li>The crucial point is that variables created or modified within a subshell are inaccessible in the parent shell once the subshell completes.</li>
+<li>Let us craft a simple script to see this in action:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">"Enter a value: "</span>
+<span class="token builtin class-name">read</span> my_var <span class="token operator">|</span> <span class="token function">cat</span>  <span class="token comment"># Piping read's output to cat</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">"Value entered: <span class="token variable">$my_var</span>"</span> 
+</code></pre><ul>
+<li>In this script:</li>
+</ul>
+<ol>
+<li>We prompt the user to enter a value.</li>
+<li>The <code>read</code> command takes the input and stores it in the variable <code>my_var</code>.</li>
+<li>We then pipe the output of <code>read</code> (which is nothing, as <code>read</code> doesn't produce output) to the <code>cat</code> command. This forces <code>read</code> to run in a subshell.</li>
+<li>Finally, we try to echo the value stored in <code>my_var</code>.</li>
+</ol>
+<ul>
+<li>
+<p>Expected Output:</p>
+<ul>
+<li>When you run this script, you will notice that even after entering a value, the final <code>echo</code> statement prints an empty string.</li>
+<li>This is because <code>my_var</code> was set within the subshell created by the pipe, and It is no longer available in the parent shell.</li>
+</ul>
+</li>
+<li>
+<p>To overcome this limitation, we can use <em>process substitution</em>.</p>
+</li>
+<li>
+<p>It allows us to treat the output of a command as if it were a file, thus avoiding the creation of a subshell.</p>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">"Enter a value: "</span>
+<span class="token builtin class-name">read</span> my_var <span class="token operator">&lt;</span> <span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token function">cat</span><span class="token punctuation">)</span>  <span class="token comment"># Process substitution</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">"Value entered: <span class="token variable">$my_var</span>"</span> 
+</code></pre><ul>
+<li>Now, <code>read</code> takes its input from the output of the <code>cat</code> command (which, in this case, is whatever the user types), but without creating a subshell.</li>
+<li>The variable <code>my_var</code> is set in the main shell environment and is accessible in the final <code>echo</code> statement.</li>
+<li>Be mindful of subshells when using <code>read</code> in pipelines.</li>
+<li>If you need the variables set by <code>read</code> to be available outside the pipe, consider using process substitution or other techniques to ensure they remain in the main shell's scope.</li>
+</ul>
+<h4 id="error-handling">Error Handling </h4>
+<ul>
+<li>Check the exit status of <code>read</code> (<code>$?</code>) to handle potential errors, such as timeouts or invalid input.</li>
+<li>Example:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">"Enter your name within 5 seconds: "</span>
+<span class="token keyword keyword-if">if</span> <span class="token builtin class-name">read</span> <span class="token parameter variable">-t</span> <span class="token number">5</span> <span class="token parameter variable">-r</span> name<span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Hello, <span class="token variable">$name</span>!"</span>
+<span class="token keyword keyword-else">else</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Time's up! You didn't enter your name in time."</span>
+<span class="token keyword keyword-fi">fi</span>
+</code></pre><ul>
+<li>In this script:</li>
+</ul>
+<ol>
+<li>We prompt the user to enter their name within 5 seconds.</li>
+<li>The <code>read</code> command uses the <code>-t 5</code> option to set a timeout of 5 seconds. If the user doesn't input anything within this time, <code>read</code> will return a non-zero exit status.</li>
+<li>We use an <code>if</code> statement to check the exit status of <code>read</code>.
+<ul>
+<li>If <code>read</code> is successful (exit status 0), we greet the user.</li>
+<li>If <code>read</code> times out (non-zero exit status), we display a timeout message.</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>The exit status of <code>read</code> (<code>$?</code>) is crucial for error handling.</li>
+<li>Common errors <code>read</code> might encounter include:
+<ul>
+<li><strong>Timeout:</strong> The user doesn't provide input within the specified time (<code>-t</code> option).</li>
+<li><strong>End-of-File (EOF):</strong> The input stream ends unexpectedly (<em>e.g.</em>, when reading from a file that's shorter than anticipated).</li>
+<li><strong>Invalid Input:</strong> In some cases, if <code>read</code> is used with specific options and the input doesn't conform to the expected format, it might fail.</li>
+</ul>
+</li>
+</ul>
+<h4 id="beyond-the-basics-1">Beyond the basics: </h4>
+<ul>
+<li><strong>Input Validation:</strong>
+<ul>
+<li>Use regular expressions or other tests to ensure the user provides valid input.</li>
+</ul>
+</li>
+<li><strong>Menus and Interactive Prompts:</strong>
+<ul>
+<li>Combine <code>read</code> with <code>case</code> statements or other control structures to create user-friendly menus and interactive prompts.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="positional-parameters">Positional Parameters </h2>
+<ul>
+<li>In <code>bash</code> scripting, command-line arguments are the values you provide to your script when you run it.</li>
+<li>These arguments can be options (flags that modify the script's behaviour) or data that the script needs to process.</li>
+<li><code>bash</code> provides a straightforward way to capture and use these arguments within your script.</li>
+</ul>
+<h3 id="parameter-indexes">Parameter Indexes </h3>
+<ul>
+<li><code>$0</code>:
+<ul>
+<li>This special parameter always holds the name of the script itself (or the full path if you executed it with a path).</li>
+</ul>
+</li>
+<li><code>$1</code>, <code>$2</code>, <code>$3</code>, ...:
+<ul>
+<li>These represent the first, second, third, and so on, arguments provided on the command line.</li>
+</ul>
+</li>
+<li><code>$#</code>:
+<ul>
+<li>This parameter stores the total number of arguments passed to the script.</li>
+</ul>
+</li>
+<li><code>$*</code> and <code>$@</code>:
+<ul>
+<li>These special parameters represent all the positional parameters as a single entity, but they behave differently when quoted (see below).</li>
+</ul>
+</li>
+</ul>
+<h3 id="handling-a-large-number-of-arguments">Handling a Large Number of Arguments </h3>
+<ul>
+<li>If your script needs to handle more than nine arguments, you can use the <code>shift</code> command.</li>
+<li>It shifts all the positional parameters down by one, so <code>$2</code> becomes <code>$1</code>, <code>$3</code> becomes <code>$2</code>, and so on.</li>
+<li>The original <code>$1</code> is discarded.</li>
+<li>You can use <code>shift</code> in a loop to process an arbitrary number of arguments.</li>
+<li>Or, you can use braces:
+<ul>
+<li><code>${10}</code>, <code>${11}</code>, <code>${12}</code>, <em>etc.</em>: These allow you to access the tenth, eleventh, twelfth, and so on, arguments.</li>
+</ul>
+</li>
+<li>The braces serve a crucial role in disambiguating the parameter expansion.</li>
+<li>Without them, the shell would try to interpret <code>$10</code> as the value of the variable <code>$1</code> followed by the literal character <code>0</code>.</li>
+<li>The braces tell the shell to treat the entire sequence within them as the parameter name.</li>
+</ul>
+<h3 id="example-1">Example </h3>
+<h4 id="displaying-arguments">Displaying Arguments </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">"Script Name: <span class="token variable">$0</span>"</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"First Argument: <span class="token variable">$1</span>"</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Second Argument: <span class="token variable">$2</span>"</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"The 13th argument is: <span class="token variable">${13}</span>"</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"All Arguments: <span class="token variable">$*</span>"</span> 
+</code></pre><h4 id="files-backup">Files Backup </h4>
+<ul>
+<li>Here is a real-world example where your bash script needs to handle a dynamic list of files.</li>
+<li>Imagine you are building a simple backup script:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Basic Backup Script</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> <span class="token parameter variable">-eq</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Error: No files specified for backup!"</span>
+    <span class="token builtin class-name">exit</span> <span class="token number">1</span>
+<span class="token keyword keyword-fi">fi</span>
+
+<span class="token assign-left variable">backup_dir</span><span class="token operator">=</span><span class="token string">"my_backups_<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y-%m-%d<span class="token variable">)</span></span>"</span>
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> <span class="token string">"<span class="token variable">$backup_dir</span>"</span> 
+
+<span class="token builtin class-name">echo</span> <span class="token string">"Backing up the following files to <span class="token variable">$backup_dir</span>:"</span>
+<span class="token keyword keyword-for">for</span> <span class="token for-or-select variable">file</span> <span class="token keyword keyword-in">in</span> <span class="token string">"<span class="token variable">$@</span>"</span><span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"  - <span class="token variable">$file</span>"</span>
+    <span class="token function">cp</span> <span class="token parameter variable">-p</span> <span class="token string">"<span class="token variable">$file</span>"</span> <span class="token string">"<span class="token variable">$backup_dir</span>"</span>
+<span class="token keyword keyword-done">done</span>
+</code></pre><ul>
+<li>In this script:</li>
+</ul>
+<ol>
+<li><strong>Error Handling:</strong></li>
+</ol>
+<ul>
+<li>The <code>if [ $# -eq 0 ]</code> checks if any arguments were provided.</li>
+<li>If not, it displays an error and exits.</li>
+</ul>
+<ol start="2">
+<li><strong>Backup Directory:</strong></li>
+</ol>
+<ul>
+<li>A backup directory is created using the current date in its name.</li>
+<li>The <code>-p</code> option ensures that any necessary parent directories are also created.</li>
+</ul>
+<ol start="3">
+<li><strong>Looping Through Arguments:</strong></li>
+</ol>
+<ul>
+<li>The <code>for</code> loop iterates over all the positional parameters (<code>"$@"</code>), treating each one as a filename.</li>
+</ul>
+<ol start="4">
+<li><strong>Backup Process:</strong></li>
+</ol>
+<ul>
+<li>For each file, the script echoes its name and then copies it (preserving permissions and timestamps with <code>-p</code>) to the backup directory.</li>
+</ul>
+<h4 id="long-arguments">Long Arguments </h4>
+<ul>
+<li>Suppose you want your script to handle an optional first argument specifying the backup directory.</li>
+<li>The remaining arguments would be the files to back up.</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Backup Script with Optional Backup Directory</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> <span class="token parameter variable">-eq</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Error: No files specified for backup!"</span>
+    <span class="token builtin class-name">exit</span> <span class="token number">1</span>
+<span class="token keyword keyword-fi">fi</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-d</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token assign-left variable">backup_dir</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$1</span>"</span>
+    <span class="token builtin class-name">shift</span>  <span class="token comment"># Shift the arguments, discarding the first one</span>
+<span class="token keyword keyword-else">else</span>
+    <span class="token assign-left variable">backup_dir</span><span class="token operator">=</span><span class="token string">"my_backups_<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y-%m-%d<span class="token variable">)</span></span>"</span>
+    <span class="token function">mkdir</span> <span class="token parameter variable">-p</span> <span class="token string">"<span class="token variable">$backup_dir</span>"</span>
+<span class="token keyword keyword-fi">fi</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">"Backing up the following files to <span class="token variable">$backup_dir</span>:"</span>
+<span class="token keyword keyword-for">for</span> <span class="token for-or-select variable">file</span> <span class="token keyword keyword-in">in</span> <span class="token string">"<span class="token variable">$@</span>"</span><span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"  - <span class="token variable">$file</span>"</span>
+    <span class="token function">cp</span> <span class="token parameter variable">-p</span> <span class="token string">"<span class="token variable">$file</span>"</span> <span class="token string">"<span class="token variable">$backup_dir</span>"</span>
+<span class="token keyword keyword-done">done</span>
+</code></pre><ul>
+<li>The <code>if [ -d "$1" ]</code> checks if the first argument is a directory.</li>
+<li>If it is, we assume it is the desired backup directory and store it in <code>backup_dir</code>.</li>
+<li>Then, <code>shift</code> is used to discard the first argument (<code>$1</code>) and shift all subsequent arguments down by one position.</li>
+<li>Now, <code>$2</code> becomes <code>$1</code>, <code>$3</code> becomes <code>$2</code>, and so on.</li>
+<li>The rest of the script proceeds as before, but now <code>$@</code> represents only the files to be backed up, as the backup directory has been handled separately.</li>
+</ul>
+<h3 id="considerations">Considerations </h3>
+<ul>
+<li><strong>Quoting:</strong>
+<ul>
+<li>It is crucial to <strong>quote your variables</strong> (<em>e.g.</em>, <code>"$1"</code>) to prevent issues with word splitting and unexpected behaviour, especially when arguments might contain spaces or other special characters.</li>
+</ul>
+</li>
+<li><strong><code>"$@"</code> vs. <code>"$*"</code>:</strong>
+<ul>
+<li>When quoted, <code>"$@"</code> expands each argument into a separate word, preserving their original form.</li>
+<li><code>"$*"</code> expands all arguments into a single string, separated by spaces.</li>
+</ul>
+</li>
+<li><strong>Input Validation:</strong>
+<ul>
+<li>Always validate your command-line arguments to ensure they are of the expected type, format, and number.</li>
+<li>This makes your scripts more robust and user-friendly.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="redirection">Redirection </h2>
+<ul>
+<li><code>&gt;</code> overwrite.</li>
+<li><code>&gt;&gt;</code> append for output.</li>
+<li><code>&lt;</code> for input.</li>
+<li><code>|</code> for pipes; chaining commands.</li>
+</ul>
+<h3 id="example-2">Example </h3>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Create a file named 'original.txt' and write some text to it</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"This is the original text."</span> <span class="token operator">&gt;</span> original.txt
+
+<span class="token comment"># Append more text to the same file</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"This line is appended."</span> <span class="token operator">&gt;&gt;</span> original.txt
+
+<span class="token comment"># Read the contents of 'original.txt' and display them</span>
+<span class="token function">cat</span> <span class="token operator">&lt;</span> original.txt
+
+<span class="token comment"># Chain commands: List files, filter for 'original.txt', and count the lines</span>
+<span class="token function">ls</span> <span class="token operator">|</span> <span class="token function">grep</span> original.txt <span class="token operator">|</span> <span class="token function">wc</span> <span class="token parameter variable">-l</span>
+</code></pre><ol>
+<li>
+<p><strong><code>&gt;</code> Overwrite:</strong></p>
+<ul>
+<li>The first <code>echo</code> command uses <code>&gt;</code> to create a new file called <code>original.txt</code> and writes the text "This is the original text." into it.</li>
+<li>If the file already existed, its contents would be completely replaced.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>&gt;&gt;</code> Append:</strong></p>
+<ul>
+<li>The second <code>echo</code> command uses <code>&gt;&gt;</code> to append the text "This line is appended." to the end of <code>original.txt</code>, preserving the existing content.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>&lt;</code> Input:</strong></p>
+<ul>
+<li>The <code>cat</code> command uses <code>&lt;</code> to take its input from the file <code>original.txt</code> instead of the keyboard.</li>
+<li>It then displays the file's contents on the screen.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>|</code> Pipe:</strong></p>
+<ul>
+<li>The final line demonstrates command chaining with pipes.
+<ul>
+<li><code>ls</code> lists all files in the current directory.</li>
+<li>Its output is piped (<code>|</code>) to <code>grep original.txt</code>, which filters the list to show only lines containing "original.txt".</li>
+<li>The filtered output is then piped to <code>wc -l</code>, which counts the number of lines (effectively telling us if the file exists).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="process-substitution">Process Substitution </h3>
+<ul>
+<li>
+<p>At its core, process substitution provides a clever way to bridge the gap between commands and files.</p>
+</li>
+<li>
+<p>It allows you to treat the output of a command (or a sequence of piped commands) as if it were a file, and vice versa.</p>
+</li>
+<li>
+<p>This opens up a realm of possibilities for manipulating data and interacting with commands in ways that would otherwise be tricky or even impossible.</p>
+</li>
+<li>
+<p>Process substitution comes in two flavours, each catering to a different direction of data flow:</p>
+<ul>
+<li>
+<p><strong>Output as a File:</strong> <code>&lt;(list)</code></p>
+<ul>
+<li>This form captures the standard output of the commands in <code>list</code> and presents it as a temporary file.</li>
+<li>It is perfect when you want to feed the output of a command directly into another command that expects a filename as input.</li>
+</ul>
+</li>
+<li>
+<p><strong>Input from a File:</strong> <code>&gt;(list)</code></p>
+<ul>
+<li>This form creates a temporary file and feeds anything written to it into the standard input of the commands in <code>list</code>.</li>
+<li>It is handy when you want to capture the output of a command that doesn't naturally support redirection to a file.</li>
+</ul>
+</li>
+<li>
+<p><strong>Replacement / Command Substitution:</strong> <code>$(command)</code></p>
+<ul>
+<li>The <code>$(...)</code> surrounding the command tells the shell to execute the command inside and substitute its output in place of the <code>$(...)</code> expression.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>When you use process substitution, <code>bash</code> creates special files (often in the <code>/dev/fd/</code> directory) that act as intermediaries.</p>
+</li>
+<li>
+<p>These files aren't actual files on your disk; they are more like pipes with names.</p>
+</li>
+<li>
+<p>This allows you to use familiar redirection operators (<code>&lt;</code> and <code>&gt;</code>) with the output or input of commands, even if those commands don't natively support such redirection.</p>
+</li>
+<li>
+<p>Why is it so useful?</p>
+<ul>
+<li><strong>Avoiding Subshells:</strong>
+<ul>
+<li>As we saw with the <code>read</code> command, pipelines typically create subshells, leading to variable scoping issues.</li>
+<li>Process substitution neatly sidesteps this problem, ensuring variables set within the substituted process are accessible in the main shell.</li>
+</ul>
+</li>
+<li><strong>Flexibility:</strong>
+<ul>
+<li>It lets you use commands in contexts where they wouldn't normally fit, enhancing the composability of your scripts.</li>
+</ul>
+</li>
+<li><strong>Efficiency:</strong>
+<ul>
+<li>In some cases, it can lead to more efficient code by avoiding the need to create intermediate temporary files on disk.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Real-World Use Cases</p>
+<ul>
+<li>
+<p><strong>Feeding Command Output to <code>read</code></strong>:</p>
+<ul>
+<li>As we have seen, process substitution is a lifesaver when you need to use <code>read</code> with the output of a command in a pipeline.</li>
+</ul>
+</li>
+<li>
+<p><strong>Capturing Output of Commands That Don't Support Redirection</strong>:</p>
+<ul>
+<li>Some commands might not have built-in support for redirecting their output to a file.</li>
+<li>Process substitution lets you capture their output anyway.</li>
+</ul>
+</li>
+<li>
+<p><strong>Complex Command Chaining</strong>:</p>
+<ul>
+<li>It enables you to create intricate pipelines where the output of one command is seamlessly integrated into the input of another, even if those commands have different input/output behaviours.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="examples">Examples </h4>
+<ol>
+<li>Process Substitution: <code>&lt;(...)</code>
+<ul>
+<li><strong>Purpose:</strong> Captures the output of a command (or a series of piped commands) and presents it as a temporary file.</li>
+</ul>
+</li>
+</ol>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Read sorted output of 'ls' directly into a 'while read' loop</span>
+<span class="token keyword keyword-while">while</span> <span class="token builtin class-name">read</span> <span class="token parameter variable">-r</span> filename<span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Processing file: <span class="token variable">$filename</span>"</span>
+<span class="token keyword keyword-done">done</span> <span class="token operator">&lt;</span> <span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token function">ls</span> <span class="token operator">|</span> <span class="token function">sort</span><span class="token punctuation">)</span> 
+</code></pre><ul>
+<li>In this script, the output of <code>ls | sort</code> (a sorted list of files) is treated as a file, and <code>read</code> reads from it line by line.</li>
+</ul>
+<ol start="2">
+<li>Process Substitution: <code>&gt;(...)</code>
+<ul>
+<li><strong>Purpose:</strong> Creates a temporary file and feeds anything written to it into the standard input of the commands within the parentheses.</li>
+</ul>
+</li>
+</ol>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Capture output of 'tee' (which usually writes to both stdout and a file)</span>
+<span class="token function">tee</span> <span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token function">cat</span> <span class="token operator">&gt;&gt;</span> log.txt<span class="token punctuation">)</span> 
+</code></pre><ul>
+<li>Here, <code>tee</code>'s output is sent to both standard output (the terminal) and a file named <code>log.txt</code>. The <code>&gt;(...)</code> ensures <code>tee</code>'s output is captured and appended to the log file.</li>
+</ul>
+<ol start="3">
+<li>Command Substitution: <code>$(...)</code>
+<ul>
+<li><strong>Purpose:</strong> Executes the command within the parentheses and substitutes its output directly into the command line.</li>
+</ul>
+</li>
+</ol>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Get the current date and store it in a variable</span>
+<span class="token assign-left variable">current_date</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y-%m-%d<span class="token variable">)</span></span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Today is: <span class="token variable">$current_date</span>"</span>
+</code></pre><ul>
+<li>This script executes <code>date +%Y-%m-%d</code> to get the current date in YYYY-MM-DD format.</li>
+<li>The <code>$(...)</code> captures this output and assigns it to the <code>current_date</code> variable.</li>
+</ul>
+<h4 id="caution">Caution! </h4>
+<ul>
+<li>While process substitution is incredibly powerful, remember that it creates temporary files.</li>
+<li>These files are usually cleaned up automatically, but in some edge cases (like script crashes), they might linger.</li>
+<li>It is good practice to be aware of this and handle temporary files responsibly, especially in long-running scripts.</li>
+</ul>
+<hr>
+<h2 id="if-elif-else"><code>if</code>, <code>elif</code>, <code>else</code> </h2>
+<ul>
+<li>In the realm of <code>bash</code> scripting, the trio of <code>if</code>, <code>elif</code>, and <code>else</code> forms the backbone of <strong>conditional branching</strong>, allowing your scripts to make decisions and execute different code sections based on specific conditions. Let us break down how they work:</li>
+</ul>
+<h3 id="the-if-statement">The <code>if</code> Statement </h3>
+<ul>
+<li>The <code>if</code> statement is the cornerstone of conditional logic.</li>
+<li>It evaluates a condition, and if that condition is true, it executes a block of code.</li>
+<li>Here is the basic structure:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> condition <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token comment"># Code to execute if the condition is true</span>
+<span class="token keyword keyword-fi">fi</span>
+</code></pre><ul>
+<li><strong><code>if</code></strong>: The keyword that signals the start of the conditional statement.</li>
+<li><strong><code>[ condition ]</code></strong>: This is where you specify the condition to be tested.
+<ul>
+<li>We will explore various types of conditions shortly.</li>
+</ul>
+</li>
+<li><strong><code>then</code></strong>: The keyword that introduces the block of code to be executed if the condition is true.</li>
+<li><strong><code>fi</code></strong>: The keyword that marks the end of the <code>if</code> statement.</li>
+</ul>
+<h4 id="example-3">Example </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-f</span> myfile.txt <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"myfile.txt exists!"</span>
+<span class="token keyword keyword-fi">fi</span>
+</code></pre><ul>
+<li>This script checks if the file <code>myfile.txt</code> exists.</li>
+<li>If it does, it prints a message.</li>
+</ul>
+<h3 id="the-elif-statement">The <code>elif</code> Statement </h3>
+<ul>
+<li>The <code>elif</code> statement (short for "else if") allows you to test additional conditions if the initial <code>if</code> condition is false.</li>
+<li>You can have multiple <code>elif</code> statements within a single <code>if</code> block.</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> condition1 <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token comment"># Code to execute if condition1 is true</span>
+<span class="token keyword keyword-elif">elif</span> <span class="token punctuation">[</span> condition2 <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token comment"># Code to execute if condition1 is false and condition2 is true</span>
+<span class="token keyword keyword-fi">fi</span>
+</code></pre><h4 id="example-4">Example </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-f</span> myfile.txt <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"myfile.txt exists!"</span>
+<span class="token keyword keyword-elif">elif</span> <span class="token punctuation">[</span> <span class="token parameter variable">-d</span> mydirectory <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"mydirectory exists!"</span>
+<span class="token keyword keyword-fi">fi</span>
+</code></pre><ul>
+<li>This script first checks if <code>myfile.txt</code> exists.</li>
+<li>If not, it then checks if <code>mydirectory</code> exists.</li>
+</ul>
+<h3 id="the-else-statement">The <code>else</code> Statement </h3>
+<ul>
+<li>The <code>else</code> statement provides a default block of code to be executed if none of the preceding <code>if</code> or <code>elif</code> conditions are true.</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> condition <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token comment"># Code to execute if the condition is true</span>
+<span class="token keyword keyword-else">else</span>
+    <span class="token comment"># Code to execute if the condition is false</span>
+<span class="token keyword keyword-fi">fi</span>
+</code></pre><h4 id="example-5">Example </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-f</span> myfile.txt <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"myfile.txt exists!"</span>
+<span class="token keyword keyword-else">else</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"myfile.txt does not exist."</span>
+<span class="token keyword keyword-fi">fi</span>
+</code></pre><ul>
+<li>This script checks if <code>myfile.txt</code> exists and prints a corresponding message based on the result.</li>
+</ul>
+<h3 id="conditions">Conditions </h3>
+<ul>
+<li>The power of <code>if</code>, <code>elif</code>, and <code>else</code> lies in the conditions you test.</li>
+<li><code>bash</code> offers a rich set of tests, including:</li>
+</ul>
+<h4 id="file-tests">File Tests </h4>
+<ul>
+<li>Check for file existence, type, permissions, etc. (<em>e.g.</em>, <code>-f</code>, <code>-d</code>, <code>-r</code>, <code>-w</code>, <code>-x</code>)</li>
+<li>Think of file tests as your script's way of "feeling" around the file system.</li>
+<li>Just like you might touch an object to determine its shape, texture, or temperature, your script uses file tests to gather information about files and directories.</li>
+<li>These tests are typically used within conditional statements (like <code>if</code>) to make decisions based on the file's properties.</li>
+<li>Let us explore the five file tests you highlighted:</li>
+</ul>
+<ol>
+<li>
+<p><strong><code>-f file</code></strong>:</p>
+<ul>
+<li>This test checks if the specified <code>file</code> exists <strong>and</strong> is a regular file (not a directory, symbolic link, <em>etc.</em>).</li>
+<li>It is like asking, "Is this a solid, standalone file?"</li>
+</ul>
+</li>
+<li>
+<p><strong><code>-d file</code></strong>:</p>
+<ul>
+<li>This one verifies if the <code>file</code> exists <strong>and</strong> is a directory.</li>
+<li>It is akin to asking, "Is this a container for other files?"</li>
+</ul>
+</li>
+<li>
+<p><strong><code>-r file</code></strong>:</p>
+<ul>
+<li>This test checks if the <code>file</code> exists <strong>and</strong> is readable by the current user.</li>
+<li>It is like asking, "Can I peek inside this file?"</li>
+</ul>
+</li>
+<li>
+<p><strong><code>-w file</code></strong>:</p>
+<ul>
+<li>This one confirms if the <code>file</code> exists <strong>and</strong> is writable by the current user.</li>
+<li>It is like asking, "Can I make changes to this file?"</li>
+</ul>
+</li>
+<li>
+<p><strong><code>-x file</code></strong>:</p>
+<ul>
+<li>This test verifies if the <code>file</code> exists <strong>and</strong> is executable by the current user.</li>
+<li>It is like asking, "Can I run this file as a program?"</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>Let us see these tests in action within a simple script:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token assign-left variable">filename</span><span class="token operator">=</span><span class="token string">"myfile.txt"</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-f</span> <span class="token string">"<span class="token variable">$filename</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$filename</span> is a regular file."</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-r</span> <span class="token string">"<span class="token variable">$filename</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$filename</span> is readable."</span>
+    <span class="token keyword keyword-fi">fi</span>
+
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-w</span> <span class="token string">"<span class="token variable">$filename</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$filename</span> is writable."</span>
+    <span class="token keyword keyword-fi">fi</span>
+
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-x</span> <span class="token string">"<span class="token variable">$filename</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$filename</span> is executable."</span>
+    <span class="token keyword keyword-fi">fi</span>
+<span class="token keyword keyword-elif">elif</span> <span class="token punctuation">[</span> <span class="token parameter variable">-d</span> <span class="token string">"<span class="token variable">$filename</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$filename</span> is a directory."</span>
+<span class="token keyword keyword-else">else</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$filename</span> is something else or doesn't exist."</span>
+<span class="token keyword keyword-fi">fi</span>
+</code></pre><ul>
+<li>This script checks the properties of <code>myfile.txt</code> and provides informative output based on the results of the file tests.</li>
+<li>More on file test can be found in the <code>man test</code> page.</li>
+</ul>
+<h4 id="string-comparisons">String Comparisons </h4>
+<ul>
+<li>They empower your scripts to make decisions based on the content of text.</li>
+<li>It is like having your script act as a discerning judge, evaluating strings and declaring whether they are equal, unequal, or stand in a particular order.</li>
+<li>Compare strings for equality, inequality, or lexicographic order are <code>=</code>, <code>!=</code>, <code>&lt;</code>, and <code>&gt;</code>.</li>
+<li>Let us meet the operators that enable these textual judgments:
+<ul>
+<li><strong><code>=</code> (Equal):</strong>
+<ul>
+<li>This operator checks if two strings are identical.</li>
+<li>It is like asking, "Are these two pieces of text exactly the same?"</li>
+</ul>
+</li>
+<li><strong><code>!=</code> (Not Equal):</strong>
+<ul>
+<li>This one verifies if two strings are different.</li>
+<li>It is like asking, "Are these two pieces of text distinct in any way?"</li>
+</ul>
+</li>
+<li><strong><code>&lt;</code> (Less Than):</strong>
+<ul>
+<li>This operator checks if the first string comes before the second string in lexicographic (dictionary) order.</li>
+<li>It is like asking, "Does this word come before that word in the dictionary?"</li>
+</ul>
+</li>
+<li><strong><code>&gt;</code> (Greater Than):</strong>
+<ul>
+<li>This one checks if the first string comes after the second string in lexicographic order.</li>
+<li>It is like asking, "Does this word come after that word in the dictionary?"</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Let us see these operators in action:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token assign-left variable">word1</span><span class="token operator">=</span><span class="token string">"apple"</span>
+<span class="token assign-left variable">word2</span><span class="token operator">=</span><span class="token string">"banana"</span>
+<span class="token assign-left variable">word3</span><span class="token operator">=</span><span class="token string">"Apple"</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$word1</span>"</span> <span class="token operator">=</span> <span class="token string">"<span class="token variable">$word2</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"apple and banana are equal"</span> 
+<span class="token keyword keyword-else">else</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"apple and banana are not equal"</span>
+<span class="token keyword keyword-fi">fi</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$word1</span>"</span> <span class="token operator">!=</span> <span class="token string">"<span class="token variable">$word3</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"apple and Apple are not equal"</span>
+<span class="token keyword keyword-else">else</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"apple and Apple are equal"</span>
+<span class="token keyword keyword-fi">fi</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$word1</span>"</span> <span class="token operator">&lt;</span> <span class="token string">"<span class="token variable">$word2</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"apple comes before banana"</span>
+<span class="token keyword keyword-else">else</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"apple does not come before banana"</span>
+<span class="token keyword keyword-fi">fi</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$word2</span>"</span> <span class="token operator">&gt;</span> <span class="token string">"<span class="token variable">$word1</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"banana comes after apple"</span>
+<span class="token keyword keyword-else">else</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"banana does not come after apple"</span>
+<span class="token keyword keyword-fi">fi</span>
+</code></pre><ul>
+<li>When you run this script, you will get the following output:</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>apple and banana are not equal
+apple and Apple are not equal 
+apple comes before banana
+banana comes after apple
+</code></pre><ul>
+<li>Important considerations:
+<ul>
+<li><strong>Case Sensitivity:</strong>
+<ul>
+<li><code>bash</code> string comparisons are case-sensitive.</li>
+<li>"Apple" and "apple" are considered different.</li>
+</ul>
+</li>
+<li><strong>Quoting:</strong>
+<ul>
+<li>Always quote your variables within string comparisons to prevent unexpected behaviour due to word splitting or empty variables.</li>
+</ul>
+</li>
+<li><strong>Lexicographic Order:</strong>
+<ul>
+<li>The <code>&lt;</code> and <code>&gt;</code> operators rely on lexicographic order, which might differ slightly from strict alphabetical order depending on your locale settings.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="numeric-comparisons">Numeric comparisons </h4>
+<ul>
+<li>
+<p>Imagine your <code>bash</code> script has a built-in calculator, capable of comparing numbers and making decisions based on the results.</p>
+</li>
+<li>
+<p>That is the essence of numeric comparisons!</p>
+</li>
+<li>
+<p>They allow your scripts to evaluate numerical values and execute different code sections depending on whether the numbers are equal, unequal, or stand in a specific numerical relationship.</p>
+</li>
+<li>
+<p>Let us meet the operators that power this numerical decision-making:</p>
+<ul>
+<li><strong><code>-eq</code> (Equal):</strong>
+<ul>
+<li>This operator checks if two integers are equal.</li>
+<li>It is like asking, "Are these two numbers the same?"</li>
+</ul>
+</li>
+<li><strong><code>-ne</code> (Not Equal):</strong>
+<ul>
+<li>This one verifies if two integers are different.</li>
+<li>It is like asking, "Are these two numbers distinct?"</li>
+</ul>
+</li>
+<li><strong><code>-lt</code> (Less Than):</strong>
+<ul>
+<li>This operator checks if the first integer is less than the second integer.</li>
+<li>It is like asking, "Is this number smaller than that number?"</li>
+</ul>
+</li>
+<li><strong><code>-gt</code> (Greater Than):</strong>
+<ul>
+<li>This one checks if the first integer is greater than the second integer.</li>
+<li>It is like asking, "Is this number larger than that number?"</li>
+</ul>
+</li>
+<li><strong><code>-le</code> (Less Than or Equal To):</strong>
+<ul>
+<li>This operator checks if the first integer is less than or equal to the second integer.</li>
+</ul>
+</li>
+<li><strong><code>-ge</code> (Greater Than or Equal To):</strong>
+<ul>
+<li>This one checks if the first integer is greater than or equal to the second integer.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Let us see these operators in action within a script:</p>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Numeric comparisons demo</span>
+
+<span class="token assign-left variable">value1</span><span class="token operator">=</span><span class="token number">10</span>
+<span class="token assign-left variable">value2</span><span class="token operator">=</span><span class="token number">20</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$value1</span>"</span> <span class="token parameter variable">-eq</span> <span class="token string">"<span class="token variable">$value2</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"The values are equal."</span>
+<span class="token keyword keyword-else">else</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"The values are not equal."</span>
+<span class="token keyword keyword-fi">fi</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$value1</span>"</span> <span class="token parameter variable">-lt</span> <span class="token string">"<span class="token variable">$value2</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$value1</span> is less than <span class="token variable">$value2</span>"</span>
+<span class="token keyword keyword-fi">fi</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$value2</span>"</span> <span class="token parameter variable">-gt</span> <span class="token string">"<span class="token variable">$value1</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$value2</span> is greater than <span class="token variable">$value1</span>"</span>
+<span class="token keyword keyword-fi">fi</span>
+</code></pre><ul>
+<li>When you run this script, you will get:</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>The values are not equal.
+10 is less than 20
+20 is greater than 10
+</code></pre><h4 id="logical-operators">Logical operators </h4>
+<ul>
+<li>Logical operators are the connective tissue that binds multiple conditions together, allowing you to create intricate decision-making structures in your <code>bash</code> scripts.</li>
+<li>They empower your scripts to evaluate multiple conditions simultaneously and execute code based on the combined outcome.</li>
+<li>Operators:
+<ul>
+<li><strong><code>&amp;&amp;</code> (AND):</strong>
+<ul>
+<li>This operator acts as a strict gatekeeper.</li>
+<li>It ensures that <strong>both</strong> the conditions on its left and right sides evaluate to true for the overall expression to be considered true.</li>
+<li>It is like saying, "I will only proceed if both of these things are true."</li>
+</ul>
+</li>
+<li><strong><code>||</code> (OR):</strong>
+<ul>
+<li>This operator is more lenient.</li>
+<li>It allows the overall expression to be true if <strong>at least one</strong> of the conditions on its left or right side is true.</li>
+<li>It is like saying, "I am happy as long as one of these things is true."</li>
+</ul>
+</li>
+<li><strong><code>!</code> (NOT):</strong>
+<ul>
+<li>This operator is the contrarian of the group.</li>
+<li>It flips the truth value of the expression that follows it.</li>
+<li>If the expression is true, <code>!</code> makes it false, and vice-versa.</li>
+<li>It is like saying, "I want the opposite of what this condition is telling me."</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Let us see these operators in action:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token assign-left variable">filename</span><span class="token operator">=</span><span class="token string">"myfile.txt"</span>
+
+<span class="token comment"># AND operator</span>
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-f</span> <span class="token string">"<span class="token variable">$filename</span>"</span> <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">[</span> <span class="token parameter variable">-r</span> <span class="token string">"<span class="token variable">$filename</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$filename</span> exists and is readable!"</span>
+<span class="token keyword keyword-fi">fi</span>
+
+<span class="token comment"># OR operator</span>
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-f</span> <span class="token string">"<span class="token variable">$filename</span>"</span> <span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">[</span> <span class="token parameter variable">-d</span> <span class="token string">"<span class="token variable">$filename</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$filename</span> exists, either as a file or a directory."</span>
+<span class="token keyword keyword-fi">fi</span>
+
+<span class="token comment"># NOT operator</span>
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> <span class="token parameter variable">-w</span> <span class="token string">"<span class="token variable">$filename</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$filename</span> is not writable."</span>
+<span class="token keyword keyword-fi">fi</span>
+</code></pre><ul>
+<li>In this script:</li>
+</ul>
+<ol>
+<li>The first <code>if</code> statement uses <code>&amp;&amp;</code> to check if <code>myfile.txt</code> exists <strong>and</strong> is readable.</li>
+<li>The second <code>if</code> statement uses <code>||</code> to check if <code>myfile.txt</code> exists either as a file <strong>or</strong> a directory.</li>
+<li>The third <code>if</code> statement uses <code>!</code> to check if <code>myfile.txt</code> is <strong>not</strong> writable.</li>
+</ol>
+<ul>
+<li>You can nest and group multiple conditions using parentheses to create even more intricate logical expressions.</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token punctuation">(</span> <span class="token parameter variable">-r</span> <span class="token string">"<span class="token variable">$file1</span>"</span> <span class="token operator">&amp;&amp;</span> <span class="token parameter variable">-w</span> <span class="token string">"<span class="token variable">$file1</span>"</span> <span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span> <span class="token parameter variable">-x</span> <span class="token string">"<span class="token variable">$file2</span>"</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span> <span class="token parameter variable">-d</span> <span class="token string">"<span class="token variable">$file2</span>"</span> <span class="token punctuation">)</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token comment"># Code to execute if the complex condition is true</span>
+<span class="token keyword keyword-fi">fi</span>
+</code></pre><h4 id="different-ifs">Different <code>if</code>s </h4>
+<ul>
+<li>
+<p>Let us clarify the distinction between these two seemingly similar <code>if</code> statement structures in <code>bash</code> scripting.</p>
+</li>
+<li>
+<p><code>if [ ... ]; then</code></p>
+<ul>
+<li>This is the <strong>classic</strong> and more <strong>portable</strong> way to write an <code>if</code> statement in <code>bash</code>.</li>
+<li>It uses the <code>[</code> command, which is an alias for the <code>test</code> command.</li>
+<li>The <code>test</code> command evaluates the expression within the square brackets and returns an exit status:
+<ul>
+<li><strong>0 (true)</strong> if the expression is true.</li>
+<li><strong>1 (false)</strong> if the expression is false.</li>
+</ul>
+</li>
+<li>The <code>if</code> statement then checks this exit status to decide whether to execute the <code>then</code> block.</li>
+</ul>
+</li>
+<li>
+<p><code>if [[ ... ]]; then</code></p>
+<ul>
+<li>This is a <strong>newer</strong> and more <strong>powerful</strong> form of the <code>if</code> statement introduced in <code>bash</code>.</li>
+<li>It uses the <code>[[</code> keyword, which is a special <code>bash</code> construct, not a command.</li>
+<li>This offers several advantages:
+<ul>
+<li><strong>Improved String Handling:</strong>
+<ul>
+<li>It handles string comparisons more intuitively, especially with pattern matching and regular expressions.</li>
+</ul>
+</li>
+<li><strong>No Word Splitting or Filename Expansion:</strong>
+<ul>
+<li>Inside <code>[[ ... ]]</code>, word splitting and filename expansion (globbing) are not performed by default, leading to safer and more predictable behavior.</li>
+</ul>
+</li>
+<li><strong>Logical Operators:</strong>
+<ul>
+<li>It directly supports the more familiar <code>&amp;&amp;</code> (AND) and <code>||</code> (OR) logical operators, making complex conditions easier to read and write.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>The following is a summary of key differences:</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th><code>if [ ... ]; then</code></th>
+<th><code>if [[ ... ]]; then</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Portability</td>
+<td>High</td>
+<td>Lower (<code>bash</code>-specific)</td>
+</tr>
+<tr>
+<td>String Handling</td>
+<td>Basic</td>
+<td>Enhanced</td>
+</tr>
+<tr>
+<td>Word Splitting/Globbing</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Logical Operators</td>
+<td><code>-a</code> (AND), <code>-o</code> (OR)</td>
+<td><code>&amp;&amp;</code> (AND), <code>||</code> (OR)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-multiple-conditions">Example: Multiple Conditions </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token assign-left variable">age</span><span class="token operator">=</span><span class="token number">30</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token variable"><span class="token punctuation">((</span> age <span class="token operator">&gt;=</span> <span class="token number">18</span> <span class="token operator">&amp;&amp;</span> age <span class="token operator">&lt;</span> <span class="token number">65</span> <span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"You are an adult of working age."</span>
+<span class="token keyword keyword-elif">elif</span> <span class="token variable"><span class="token punctuation">((</span> age <span class="token operator">&gt;=</span> <span class="token number">65</span> <span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"You are a senior citizen."</span>
+<span class="token keyword keyword-else">else</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"You are a minor."</span>
+<span class="token keyword keyword-fi">fi</span>
+</code></pre><ul>
+<li>In this script:
+<ul>
+<li>This example combines multiple conditions using logical operators (<code>&amp;&amp;</code> for AND, <code>||</code> for OR).</li>
+<li>The first <code>if</code> checks if <code>age</code> is between 18 and 64 (inclusive).</li>
+<li>The <code>elif</code> checks if <code>age</code> is 65 or older.</li>
+<li>The <code>else</code> handles the remaining case where <code>age</code> is less than 18.</li>
+</ul>
+</li>
+</ul>
+<h3 id="c-style-if">C-style <code>if</code> </h3>
+<ul>
+<li>Syntax:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token keyword keyword-if">if</span> <span class="token variable"><span class="token punctuation">((</span> arithmetic_expression <span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token comment"># Commands to execute if the expression is true (evaluates to a non-zero value)</span>
+<span class="token keyword keyword-fi">fi</span>
+</code></pre><h4 id="example-checking-if-a-number-is-even-or-odd">Example: Checking if a Number is Even or Odd </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"Enter a number: "</span> num
+
+<span class="token keyword keyword-if">if</span> <span class="token variable"><span class="token punctuation">((</span> num <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"The number is even."</span>
+<span class="token keyword keyword-else">else</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"The number is odd."</span>
+<span class="token keyword keyword-fi">fi</span>
+</code></pre><ul>
+<li>In this script:
+<ul>
+<li><code>(( num % 2 == 0 ))</code>: This arithmetic expression calculates the remainder when <code>num</code> is divided by 2. If the remainder is 0 (meaning the number is divisible by 2), the expression evaluates to true.</li>
+<li><code>if</code>: The <code>if</code> statement checks the result of the arithmetic expression.</li>
+<li><code>then</code>: If the expression is true, the code within the <code>then</code> block is executed, printing "The number is even."</li>
+<li><code>else</code>: If the expression is false, the code within the <code>else</code> block is executed, printing "The number is odd."</li>
+</ul>
+</li>
+</ul>
+<h4 id="example-comparing-two-numbers">Example: Comparing Two Numbers </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token assign-left variable">num1</span><span class="token operator">=</span><span class="token number">10</span>
+<span class="token assign-left variable">num2</span><span class="token operator">=</span><span class="token number">20</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token variable"><span class="token punctuation">((</span> num1 <span class="token operator">&lt;</span> num2 <span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$num1</span> is less than <span class="token variable">$num2</span>"</span>
+<span class="token keyword keyword-fi">fi</span>
+</code></pre><ul>
+<li>In this script:
+<ul>
+<li><code>(( num1 &lt; num2 ))</code>: This expression checks if <code>num1</code> is less than <code>num2</code>.</li>
+<li>If the comparison is true, the <code>echo</code> statement is executed.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="for-while-until"><code>for</code>, <code>while</code>, <code>until</code> </h2>
+<ul>
+<li>Let us break down the looping constructs <code>for</code>, <code>while</code>, and <code>until</code> in <code>bash</code> scripting, along with their unique purposes and behaviours.</li>
+</ul>
+<h3 id="for"><code>for</code> </h3>
+<ul>
+<li>The <code>for</code> loop is your go-to tool when you need to perform an action repeatedly for a specific set of items.</li>
+<li>It is like having a list of tasks and systematically tackling each one.</li>
+<li>The general structure looks like this:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token keyword keyword-for">for</span> <span class="token for-or-select variable">variable</span> <span class="token keyword keyword-in">in</span> list<span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token comment"># Commands to execute for each item in the list</span>
+<span class="token keyword keyword-done">done</span>
+</code></pre><ul>
+<li>
+<p><strong><code>for</code></strong>:</p>
+<ul>
+<li>The keyword that kicks off the loop.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>variable</code></strong>:</p>
+<ul>
+<li>A placeholder that will hold each item from the list during each iteration of the loop.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>in list</code></strong>:</p>
+<ul>
+<li>Specifies the list of items to iterate over.</li>
+<li>This list can be generated in various ways (we will see examples shortly).</li>
+</ul>
+</li>
+<li>
+<p><strong><code>do</code></strong>:</p>
+<ul>
+<li>The keyword that introduces the block of code to be executed for each item in the list.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>done</code></strong>:</p>
+<ul>
+<li>The keyword that marks the end of the loop.</li>
+</ul>
+</li>
+<li>
+<p>Additionally, there is another syntax for this loop:</p>
+<ul>
+<li>The C-style <code>for</code> loop is a powerful looping construct in <code>bash</code> scripting that closely resembles the <code>for</code> loop found in the <code>C</code> programming language.</li>
+<li>It offers a concise and expressive way to iterate over a sequence of numbers, making it particularly useful for tasks that involve counting or performing actions a specific number of times.</li>
+</ul>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token keyword keyword-for">for</span> <span class="token variable"><span class="token punctuation">((</span> expression1<span class="token punctuation">;</span> expression2<span class="token punctuation">;</span> expression3 <span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token comment"># Commands to be executed in each iteration</span>
+<span class="token keyword keyword-done">done</span>
+</code></pre><ul>
+<li>
+<p><strong><code>expression1</code></strong>:</p>
+<ul>
+<li>This expression is evaluated only once at the beginning of the loop.</li>
+<li>It is typically used to initialize a counter variable.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>expression2</code></strong>:</p>
+<ul>
+<li>This expression is evaluated before each iteration of the loop.</li>
+<li>The loop continues as long as this expression evaluates to true (a non-zero value).</li>
+</ul>
+</li>
+<li>
+<p><strong><code>expression3</code></strong>:</p>
+<ul>
+<li>This expression is evaluated at the end of each iteration.</li>
+<li>It is commonly used to increment or decrement the counter variable.</li>
+</ul>
+</li>
+</ul>
+<h4 id="example-6">Example </h4>
+<p><strong>1. Iterating Over a Range of Numbers</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Print numbers from 1 to 10</span>
+<span class="token keyword keyword-for">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword keyword-in">in</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">..</span><span class="token number">10</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token variable">$i</span>
+<span class="token keyword keyword-done">done</span>
+</code></pre><ul>
+<li>This script uses brace expansion (<code>{1..10}</code>) to generate a sequence of numbers from 1 to 10.</li>
+<li>The <code>for</code> loop then iterates over this sequence, assigning each number to the variable <code>i</code> and printing it.</li>
+</ul>
+<p><strong>2. Processing Command-Line Arguments</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Greet each person mentioned on the command line</span>
+<span class="token keyword keyword-for">for</span> <span class="token for-or-select variable">name</span> <span class="token keyword keyword-in">in</span> <span class="token string">"<span class="token variable">$@</span>"</span><span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Hello, <span class="token variable">$name</span>!"</span>
+<span class="token keyword keyword-done">done</span>
+</code></pre><ul>
+<li>This script uses the special parameter <code>$@</code> to access all the command-line arguments.</li>
+<li>The <code>for</code> loop iterates over these arguments, assigning each one to the variable <code>name</code> and printing a personalized greeting.</li>
+</ul>
+<p><strong>3. Looping with a Condition (C-style <code>for</code>)</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Print even numbers from 0 to 20</span>
+<span class="token keyword keyword-for">for</span> <span class="token variable"><span class="token punctuation">((</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">20</span><span class="token punctuation">;</span> i<span class="token operator">+=</span><span class="token number">2</span> <span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token variable">$i</span>
+<span class="token keyword keyword-done">done</span>
+</code></pre><ul>
+<li>This script uses the C-style <code>for</code> loop syntax.</li>
+<li>It initializes a counter variable <code>i</code> to 0, continues the loop as long as <code>i</code> is less than or equal to 20, and increments <code>i</code> by 2 in each iteration, effectively printing all even numbers within that range.</li>
+</ul>
+<p><strong>4. Nested <code>for</code> Loops</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Print a multiplication table</span>
+<span class="token keyword keyword-for">for</span> <span class="token variable"><span class="token punctuation">((</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token keyword keyword-for">for</span> <span class="token variable"><span class="token punctuation">((</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> j<span class="token operator">&lt;=</span><span class="token number">5</span><span class="token punctuation">;</span> j<span class="token operator">++</span> <span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+        <span class="token builtin class-name">printf</span> <span class="token string">"%4d"</span> <span class="token variable"><span class="token variable">$((</span>i<span class="token operator">*</span>j<span class="token variable">))</span></span> 
+    <span class="token keyword keyword-done">done</span>
+    <span class="token builtin class-name">echo</span>  <span class="token comment"># Move to the next line after each row</span>
+<span class="token keyword keyword-done">done</span>
+</code></pre><ul>
+<li>This script demonstrates nested <code>for</code> loops.</li>
+<li>The outer loop iterates over rows, and the inner loop iterates over columns, calculating and printing the product of <code>i</code> and <code>j</code> for each cell in the multiplication table.</li>
+</ul>
+<p><strong>5. Looping Over Files with Pattern Matching</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Process all .txt files in the current directory</span>
+<span class="token keyword keyword-for">for</span> <span class="token for-or-select variable">file</span> <span class="token keyword keyword-in">in</span> *.txt<span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token parameter variable">-f</span> <span class="token string">"<span class="token variable">$file</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>  <span class="token comment"># Check if it is a regular file</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">"Processing text file: <span class="token variable">$file</span>"</span>
+        <span class="token comment"># Add your text processing commands here</span>
+    <span class="token keyword keyword-fi">fi</span>
+<span class="token keyword keyword-done">done</span>
+</code></pre><ul>
+<li>This script uses pathname expansion (<code>*.txt</code>) to generate a list of files ending with <code>.txt</code>.</li>
+<li>The <code>for</code> loop iterates over these files, and the <code>if</code> statement ensures that only regular files are processed, preventing errors if the pattern doesn't match any files.</li>
+</ul>
+<h3 id="while"><code>while</code> </h3>
+<ul>
+<li>The <code>while</code> loop is your choice when you want to keep repeating an action as long as a certain condition remains true.</li>
+<li>It is like saying, "Keep doing this until something specific happens."</li>
+<li>The structure is:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token keyword keyword-while">while</span> <span class="token punctuation">[</span> condition <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token comment"># Commands to execute as long as the condition is true</span>
+<span class="token keyword keyword-done">done</span>
+</code></pre><ul>
+<li><strong><code>while</code></strong>:
+<ul>
+<li>The keyword that starts the loop.</li>
+</ul>
+</li>
+<li><strong><code>[ condition ]</code></strong>:
+<ul>
+<li>The condition that is evaluated before each iteration.</li>
+<li>If it is true, the loop continues; if it is false, the loop stops.</li>
+</ul>
+</li>
+<li><strong><code>do</code></strong>:
+<ul>
+<li>Introduces the code block to be executed repeatedly.</li>
+</ul>
+</li>
+<li><strong><code>done</code></strong>:
+<ul>
+<li>Marks the end of the loop.</li>
+</ul>
+</li>
+</ul>
+<h4 id="example-7">Example </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token keyword keyword-while">while</span> <span class="token punctuation">[</span> <span class="token variable">$count</span> <span class="token parameter variable">-le</span> <span class="token number">10</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Count: <span class="token variable">$count</span>"</span>
+    <span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>count <span class="token operator">+</span> <span class="token number">1</span><span class="token variable">))</span></span> 
+<span class="token keyword keyword-done">done</span>
+</code></pre><ul>
+<li>This loop counts from 1 to 10, echoing the count in each iteration.</li>
+</ul>
+<h3 id="until"><code>until</code> </h3>
+<ul>
+<li>The <code>until</code> loop is the mirror image of <code>while</code>.</li>
+<li>It keeps repeating an action until a certain condition becomes true.</li>
+<li>It is like saying, "Keep doing this until a specific goal is achieved."</li>
+<li>The structure is:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token keyword keyword-until">until</span> <span class="token punctuation">[</span> condition <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token comment"># Commands to execute until the condition is true</span>
+<span class="token keyword keyword-done">done</span>
+</code></pre><h4 id="example-8">Example </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token keyword keyword-until">until</span> <span class="token punctuation">[</span> <span class="token variable">$count</span> <span class="token parameter variable">-gt</span> <span class="token number">10</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Count: <span class="token variable">$count</span>"</span>
+    <span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>count <span class="token operator">+</span> <span class="token number">1</span><span class="token variable">))</span></span> 
+<span class="token keyword keyword-done">done</span>
+</code></pre><ul>
+<li>This loop, like the <code>while</code> example, also counts from 1 to 10.</li>
+<li>The difference is in how the condition is phrased.</li>
+</ul>
+<h3 id="choosing-the-right-loop">Choosing the Right Loop </h3>
+<ul>
+<li><strong><code>for</code></strong>:
+<ul>
+<li>When you have a predefined list of items to process.</li>
+</ul>
+</li>
+<li><strong><code>while</code></strong>:
+<ul>
+<li>When you need to repeat an action based on a condition that might change during the loop's execution.</li>
+</ul>
+</li>
+<li><strong><code>until</code></strong>:
+<ul>
+<li>When you want to repeat an action until a specific condition is met.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="case"><code>case</code> </h2>
+<ul>
+<li>
+<p>The <code>case</code> statement in <code>bash</code> is indeed a powerful tool for handling multiple choices efficiently, much like a <code>switch</code> statement in languages like <code>C</code>, <code>C++</code>, or <code>Java</code>.</p>
+</li>
+<li>
+<p>Let us explore its structure and how it streamlines your decision-making logic.</p>
+</li>
+<li>
+<p>The <code>case</code> statement has a distinctive syntax that sets it apart from the <code>if/elif/else</code> chain.</p>
+</li>
+<li>
+<p>Here is the general layout:</p>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token keyword keyword-case">case</span> <span class="token string">"<span class="token variable">$variable</span>"</span> <span class="token keyword keyword-in">in</span> 
+  pattern1<span class="token punctuation">)</span>
+    <span class="token comment"># Commands to execute if $variable matches pattern1</span>
+    <span class="token punctuation">;</span><span class="token punctuation">;</span>
+  pattern2<span class="token punctuation">)</span>
+    <span class="token comment"># Commands to execute if $variable matches pattern2</span>
+    <span class="token punctuation">;</span><span class="token punctuation">;</span>
+  *<span class="token punctuation">)</span>
+    <span class="token comment"># Default commands if no other pattern matches</span>
+    <span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-esac">esac</span>
+</code></pre><ul>
+<li>
+<p><strong><code>case "$variable" in</code></strong>:</p>
+<ul>
+<li>This line marks the beginning of the <code>case</code> statement.</li>
+<li>It specifies the variable whose value will be compared against the patterns.</li>
+<li>Quoting the variable is crucial to prevent unexpected behavior if the variable contains spaces or other special characters.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>pattern1)</code>, <code>pattern2)</code>, etc.</strong>:</p>
+<ul>
+<li>Each pattern represents a possible value that the <code>$variable</code> might match.</li>
+<li>Patterns can be simple strings, wildcards, or even more complex patterns using regular expressions.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>commands ;;</code></strong>:</p>
+<ul>
+<li>The commands associated with each pattern are executed if the <code>$variable</code> matches that pattern.</li>
+<li>The double semicolon (<code>;;</code>) is essential to mark the end of each case.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>*)</code></strong>:</p>
+<ul>
+<li>This is the default case, executed if none of the other patterns match.</li>
+<li>It is similar to the <code>else</code> block in an <code>if</code> statement.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>esac</code></strong>:</p>
+<ul>
+<li>This keyword signals the end of the <code>case</code> statement.</li>
+<li>It is the word <code>case</code> in reverse.</li>
+</ul>
+</li>
+</ul>
+<h3 id="advantages">Advantages </h3>
+<ul>
+<li>
+<p><strong>Readability:</strong></p>
+<ul>
+<li>The <code>case</code> statement presents a clear and organized way to handle multiple choices, making your scripts more readable and easier to maintain.</li>
+</ul>
+</li>
+<li>
+<p><strong>Efficiency:</strong></p>
+<ul>
+<li>In scenarios with many possible choices, the <code>case</code> statement can be more efficient than a long chain of <code>if/elif/else</code> statements, as it often requires fewer comparisons.</li>
+</ul>
+</li>
+<li>
+<p><strong>Pattern Matching:</strong></p>
+<ul>
+<li>The ability to use patterns (including wildcards and regular expressions) adds flexibility, allowing you to match a range of values or even complex patterns.</li>
+</ul>
+</li>
+</ul>
+<h3 id="example-9">Example </h3>
+<h4 id="menu">Menu </h4>
+<ul>
+<li>Let us enhance the menu-driven script from the previous examples using a <code>case</code> statement:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token keyword keyword-while">while</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token function">clear</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"
+    Please Select:
+    1. Display System Information
+    2. Display Disk Space
+    3. Display Home Space Utilization
+    0. Quit
+    "</span>
+
+    <span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"Enter selection [0-3] &gt; "</span>
+
+    <span class="token keyword keyword-case">case</span> <span class="token string">"<span class="token environment constant">$REPLY</span>"</span> <span class="token keyword keyword-in">in</span>
+        <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">"Program terminated."</span>
+            <span class="token builtin class-name">exit</span> <span class="token number">0</span>
+            <span class="token punctuation">;</span><span class="token punctuation">;</span>
+        <span class="token number">1</span><span class="token punctuation">)</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">"Hostname: <span class="token environment constant">$HOSTNAME</span>"</span>
+            <span class="token function">uptime</span>
+            <span class="token function">sleep</span> <span class="token number">3</span> 
+            <span class="token punctuation">;</span><span class="token punctuation">;</span>
+        <span class="token number">2</span><span class="token punctuation">)</span>
+            <span class="token function">df</span> <span class="token parameter variable">-h</span>
+            <span class="token function">sleep</span> <span class="token number">3</span>
+            <span class="token punctuation">;</span><span class="token punctuation">;</span>
+        <span class="token number">3</span><span class="token punctuation">)</span>
+            <span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">id</span> <span class="token parameter variable">-u</span><span class="token variable">)</span></span>"</span> <span class="token parameter variable">-eq</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+                <span class="token builtin class-name">echo</span> <span class="token string">"Home Space Utilization (All Users)"</span>
+                <span class="token function">du</span> <span class="token parameter variable">-sh</span> /home/*
+            <span class="token keyword keyword-else">else</span>
+                <span class="token builtin class-name">echo</span> <span class="token string">"Home Space Utilization (<span class="token environment constant">$USER</span>)"</span>
+                <span class="token function">du</span> <span class="token parameter variable">-sh</span> <span class="token string">"<span class="token environment constant">$HOME</span>"</span>
+            <span class="token keyword keyword-fi">fi</span>
+            <span class="token function">sleep</span> <span class="token number">3</span>
+            <span class="token punctuation">;</span><span class="token punctuation">;</span>
+        *<span class="token punctuation">)</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">"Invalid entry."</span> <span class="token operator">&gt;</span><span class="token file-descriptor important">&amp;2</span>
+            <span class="token function">sleep</span> <span class="token number">3</span>
+            <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-esac">esac</span>
+<span class="token keyword keyword-done">done</span>
+</code></pre><ul>
+<li>In this script, the <code>case</code> statement elegantly handles the different menu choices, making the code more concise and easier to follow compared to the previous <code>if/elif/else</code> chain.</li>
+</ul>
+<h4 id="regular-expressions">Regular Expressions </h4>
+<p><strong>Example 1. Identifying Type of a File:</strong></p>
+<ul>
+<li>Imagine you are writing a script that needs to identify the type of a file provided by the user.</li>
+<li>You want to categorize files into common types like text, images, archives, and so on.</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># File type identifier using case and regular expressions</span>
+
+<span class="token assign-left variable">filename</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$1</span>"</span>  <span class="token comment"># Get the filename from the first command-line argument</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token parameter variable">-z</span> <span class="token string">"<span class="token variable">$filename</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Usage: <span class="token variable">$0</span> &lt;filename&gt;"</span> <span class="token operator">&gt;</span><span class="token file-descriptor important">&amp;2</span>
+    <span class="token builtin class-name">exit</span> <span class="token number">1</span>
+<span class="token keyword keyword-fi">fi</span>
+
+<span class="token keyword keyword-case">case</span> <span class="token string">"<span class="token variable">$filename</span>"</span> <span class="token keyword keyword-in">in</span>
+    *.txt <span class="token operator">|</span> *.md <span class="token operator">|</span> *.csv<span class="token punctuation">)</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">"Text file"</span>
+        <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    *.jpg <span class="token operator">|</span> *.jpeg <span class="token operator">|</span> *.png <span class="token operator">|</span> *.gif<span class="token punctuation">)</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">"Image file"</span>
+        <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    *.tar <span class="token operator">|</span> *.tar.gz <span class="token operator">|</span> *.tar.bz2 <span class="token operator">|</span> *.zip<span class="token punctuation">)</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">"Archive file"</span>
+        <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    *<span class="token punctuation">)</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">"Unknown file type"</span>
+        <span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-esac">esac</span>
+</code></pre><ul>
+<li>In this script:
+<ul>
+<li><strong>Filename Input:</strong>
+<ul>
+<li>The script takes the filename as its first command-line argument (<code>$1</code>).</li>
+</ul>
+</li>
+<li><strong>Input Validation:</strong>
+<ul>
+<li>It checks if a filename was provided.</li>
+<li>If not, it displays a usage message and exits with an error.</li>
+</ul>
+</li>
+<li><strong><code>case</code> Statement with Regular Expressions:</strong>
+<ul>
+<li>The <code>case</code> statement uses regular expressions in its patterns:
+<ul>
+<li><code>*.txt | *.md | *.csv</code>: Matches files ending with <code>.txt</code>, <code>.md</code>, or <code>.csv</code> (text files).</li>
+<li><code>*.jpg | *.jpeg | *.png | *.gif</code>: Matches common image file extensions.</li>
+<li><code>*.tar | *.tar.gz | *.tar.bz2 | *.zip</code>: Matches various archive file extensions.</li>
+<li><code>*</code>: The default case, handling any other file type.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example 2: User Input Validation</strong></p>
+<ul>
+<li>Let us say you are writing a script that asks the user to enter a command.</li>
+<li>You want to ensure they enter a valid command that exists on the system and optionally allow them to provide arguments.</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"Enter a command: "</span> <span class="token builtin class-name">command</span>
+
+<span class="token keyword keyword-case">case</span> <span class="token string">"<span class="token variable">$command</span>"</span> <span class="token keyword keyword-in">in</span>
+    <span class="token punctuation">[</span>a-z0-9_-<span class="token punctuation">]</span>+<span class="token punctuation">)</span>  <span class="token comment"># Match a valid command name (letters, numbers, hyphen, underscore)</span>
+        <span class="token keyword keyword-if">if</span> <span class="token builtin class-name">type</span> <span class="token parameter variable">-P</span> <span class="token string">"<span class="token variable">$command</span>"</span> <span class="token operator">&amp;&gt;</span> /dev/null<span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>  <span class="token comment"># Check if command exists</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">"Executing: <span class="token variable">$command</span>"</span>
+            <span class="token string">"<span class="token variable">$command</span>"</span> <span class="token string">"<span class="token variable">$@</span>"</span>  <span class="token comment"># Execute the command with any provided arguments</span>
+        <span class="token keyword keyword-else">else</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">"Command not found: <span class="token variable">$command</span>"</span>
+        <span class="token keyword keyword-fi">fi</span>
+        <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    *<span class="token punctuation">)</span>  <span class="token comment"># Catch-all for invalid input</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">"Invalid command format."</span>
+        <span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-esac">esac</span>
+</code></pre><ul>
+<li>In this script:
+<ul>
+<li>The <code>case</code> statement checks the <code>$command</code> variable against two patterns:
+<ul>
+<li><code>[a-z0-9_-]+</code>: This regular expression matches one or more lowercase letters, numbers, hyphens, or underscores, ensuring a basic valid command name format.</li>
+<li><code>*</code>: This catch-all pattern handles any other input that doesn't match the first pattern.</li>
+</ul>
+</li>
+<li>Inside the first case, <code>type -P "$command"</code> checks if the command exists.</li>
+<li>If it does, the command is executed along with any additional arguments provided by the user (<code>"$@"</code>).</li>
+<li>If the command doesn't exist or the input format is invalid, appropriate error messages are displayed.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example 2: Parsing Log Files</strong></p>
+<ul>
+<li>Let us say you have a log file where each line starts with a date in the format <code>YYYY-MM-DD</code>.</li>
+<li>You want to extract the year, month, and day from each line and process them further.</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token keyword keyword-while">while</span> <span class="token builtin class-name">read</span> <span class="token parameter variable">-r</span> line<span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token keyword keyword-case">case</span> <span class="token string">"<span class="token variable">$line</span>"</span> <span class="token keyword keyword-in">in</span>
+        <span class="token punctuation">[</span><span class="token number">0</span>-9<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span>-9<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span>-9<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span>-9<span class="token punctuation">]</span>-<span class="token punctuation">[</span><span class="token number">0</span>-9<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span>-9<span class="token punctuation">]</span>-<span class="token punctuation">[</span><span class="token number">0</span>-9<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span>-9<span class="token punctuation">]</span>*<span class="token punctuation">)</span>  <span class="token comment"># Match lines starting with YYYY-MM-DD</span>
+            <span class="token assign-left variable">year</span><span class="token operator">=</span><span class="token variable">${line<span class="token operator">:</span>0<span class="token operator">:</span>4}</span>  <span class="token comment"># Extract year (first 4 characters)</span>
+            <span class="token assign-left variable">month</span><span class="token operator">=</span><span class="token variable">${line<span class="token operator">:</span>5<span class="token operator">:</span>2}</span> <span class="token comment"># Extract month (characters 6 and 7)</span>
+            <span class="token assign-left variable">day</span><span class="token operator">=</span><span class="token variable">${line<span class="token operator">:</span>8<span class="token operator">:</span>2}</span>   <span class="token comment"># Extract day (characters 9 and 10)</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">"Year: <span class="token variable">$year</span>, Month: <span class="token variable">$month</span>, Day: <span class="token variable">$day</span>"</span>
+            <span class="token comment"># ... further processing based on year, month, and day</span>
+            <span class="token punctuation">;</span><span class="token punctuation">;</span>
+        *<span class="token punctuation">)</span> 
+            <span class="token builtin class-name">echo</span> <span class="token string">"Skipping line: <span class="token variable">$line</span>"</span>  <span class="token comment"># Handle lines without the expected date format</span>
+            <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-esac">esac</span>
+<span class="token keyword keyword-done">done</span> <span class="token operator">&lt;</span> logfile.txt
+</code></pre><ul>
+<li>In this script:
+<ul>
+<li>The <code>while read</code> loop reads the log file line by line.</li>
+<li>The <code>case</code> statement checks if each <code>$line</code> starts with the <code>YYYY-MM-DD</code> pattern using a regular expression.</li>
+<li>If a match is found, the year, month, and day are extracted using substring expansion (<code>${line:start:length}</code>) and then printed.</li>
+<li>You can replace the <code>echo</code> with your desired processing logic.</li>
+<li>If a line doesn't match the expected format, it is skipped with an informative message.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="functions">Functions </h2>
+<ul>
+<li>
+<p>In <code>bash</code> scripting, functions are self-contained blocks of code that perform specific tasks.</p>
+</li>
+<li>
+<p>They promote code reusability and organization, making your scripts more modular and easier to maintain.</p>
+</li>
+<li>
+<p>Functions let you bundle a series of commands into a named unit.</p>
+</li>
+<li>
+<p>This allows you to call that unit multiple times within your script, avoiding repetition and making your code more concise.</p>
+</li>
+<li>
+<p>You define a function using the following syntax:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function-name function">function_name</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment"># Commands to be executed</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+<li>
+<p><code>function_name</code>:</p>
+<ul>
+<li>Choose a descriptive name for your function that reflects its purpose.</li>
+</ul>
+</li>
+<li>
+<p><code>()</code>:</p>
+<ul>
+<li>The parentheses are mandatory and indicate that this is a function definition.</li>
+</ul>
+</li>
+<li>
+<p><code>{ ... }</code>:</p>
+<ul>
+<li>The curly braces enclose the commands that constitute the function's body.</li>
+</ul>
+</li>
+</ul>
+<h3 id="example-10">Example </h3>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Function to greet the user</span>
+<span class="token function-name function">greet_user</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Hello, <span class="token variable">$1</span>! Welcome to my script."</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment"># Main script</span>
+<span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"Enter your name: "</span> username
+greet_user <span class="token string">"<span class="token variable">$username</span>"</span> 
+</code></pre><ul>
+<li>In this script:</li>
+</ul>
+<ol>
+<li>We define a function named <code>greet_user</code>.</li>
+<li>The function takes one argument (<code>$1</code>), which is the user's name.</li>
+<li>It prints a personalized greeting message.</li>
+<li>In the main script, we prompt the user for their name and store it in the <code>username</code> variable.</li>
+<li>We then call the <code>greet_user</code> function, passing the <code>username</code> as an argument.</li>
+</ol>
+<ul>
+<li>
+<p>Let us talk about the scope of functions and their variables in <code>bash</code> scripting.</p>
+</li>
+<li>
+<p>Function Scope: A Self-Contained World</p>
+<ul>
+<li>When you define a function in <code>bash</code>, you're essentially creating a miniature script within your main script.</li>
+<li>This function has its own little world, its own scope.</li>
+<li>Think of it as a cozy room where the function's variables and operations reside.</li>
+</ul>
+</li>
+<li>
+<p>Variables Within Functions: Local by Default</p>
+<ul>
+<li>Any variables you create or modify inside a function are, by default, <em>local</em> to that function.</li>
+<li>They are like personal belongings you keep in your room; they're accessible within the function, but once you step outside (the function ends), those variables vanish.</li>
+<li>They don't affect any variables with the same name in the main script or other functions.</li>
+</ul>
+</li>
+<li>
+<p>The <code>local</code> Keyword: Explicit Declaration</p>
+<ul>
+<li>To make it crystal clear that a variable is local, you can use the <code>local</code> keyword when declaring it inside a function.</li>
+<li>It is like putting a label on your belongings that says "Do Not Disturb."</li>
+</ul>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token keyword keyword-function">function</span> <span class="token function-name function">my_function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token builtin class-name">local</span> <span class="token assign-left variable">my_var</span><span class="token operator">=</span><span class="token string">"Hello from the function!"</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$my_var</span>"</span> 
+<span class="token punctuation">}</span>
+</code></pre><ul>
+<li>Global Variables: Shared Across the Script
+<ul>
+<li>If you want a variable to be accessible both inside and outside functions, you need to declare it as a <em>global</em> variable.</li>
+<li>You do this by using the <code>declare</code> built-in or simply assigning a value to the variable outside of any function.</li>
+</ul>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token assign-left variable">my_global_var</span><span class="token operator">=</span><span class="token string">"Hello from the main script!"</span>
+
+<span class="token keyword keyword-function">function</span> <span class="token function-name function">my_function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$my_global_var</span>"</span>  <span class="token comment"># Accessing the global variable</span>
+<span class="token punctuation">}</span>
+</code></pre><ul>
+<li>Caution: Modifying Globals Inside Functions
+<ul>
+<li>Be careful when modifying global variables within functions.</li>
+<li>If you need to change a global variable's value inside a function, you need to explicitly declare it as global using the <code>declare -g</code> command within the function.</li>
+</ul>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token keyword keyword-function">function</span> <span class="token function-name function">my_function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token builtin class-name">declare</span> <span class="token parameter variable">-g</span> my_global_var 
+    <span class="token assign-left variable">my_global_var</span><span class="token operator">=</span><span class="token string">"Modified inside the function!"</span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="advantages-1">Advantages </h3>
+<ul>
+<li><strong>Code Reusability:</strong>
+<ul>
+<li>Write a function once and call it multiple times, saving time and effort.</li>
+</ul>
+</li>
+<li><strong>Readability and Organization:</strong>
+<ul>
+<li>Break down complex scripts into smaller, manageable functions, making your code easier to understand and maintain.</li>
+</ul>
+</li>
+<li><strong>Modularity:</strong>
+<ul>
+<li>Functions promote a modular approach to scripting, where each function handles a specific task, improving code structure and testability.</li>
+</ul>
+</li>
+<li><strong>Abstraction:</strong>
+<ul>
+<li>Functions hide implementation details, allowing you to focus on the higher-level logic of your script.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="arithmetic-expansion">Arithmetic Expansion </h2>
+<ul>
+<li>Arithmetic expansion in <code>bash</code> acts like a built-in calculator, allowing you to perform mathematical operations directly within your scripts.</li>
+<li>It is a handy way to handle calculations without needing external tools or complex workarounds.</li>
+<li>The syntax is straightforward:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token variable"><span class="token variable">$((</span>expression<span class="token variable">))</span></span>
+</code></pre><ul>
+<li>
+<p><code>$(( ... ))</code>:</p>
+<ul>
+<li>This special construct tells <code>bash</code> to treat the content within the double parentheses as an arithmetic expression.</li>
+</ul>
+</li>
+<li>
+<p><code>expression</code>:</p>
+<ul>
+<li>This is where you specify the mathematical calculation you want to perform.</li>
+<li>It can include numbers, variables, and various arithmetic operators.</li>
+</ul>
+</li>
+</ul>
+<h3 id="example-11">Example </h3>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token assign-left variable">result</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span><span class="token number">5</span> <span class="token operator">+</span> <span class="token number">3</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token variable">))</span></span>  <span class="token comment"># Calculate 5 + (3 * 2)</span>
+<span class="token builtin class-name">echo</span> <span class="token variable">$result</span>           <span class="token comment"># Output: 11</span>
+</code></pre><h3 id="key-features">Key Features </h3>
+<ul>
+<li><strong>Integer Math:</strong>
+<ul>
+<li>Arithmetic expansion in <code>bash</code> focuses on integer arithmetic (whole numbers).</li>
+<li>It does not directly support floating-point operations (decimals) by default.</li>
+<li>However, you can achieve floating-point calculations using tools like <code>bc</code>.</li>
+</ul>
+</li>
+<li><strong>Operators:</strong> <code>bash</code> supports a range of arithmetic operators, including:
+<ul>
+<li><code>+</code> (addition)</li>
+<li><code>-</code> (subtraction)</li>
+<li><code>*</code> (multiplication)</li>
+<li><code>/</code> (integer division)</li>
+<li><code>%</code> (modulo - remainder after division)</li>
+<li><code>**</code> (exponentiation)</li>
+</ul>
+</li>
+<li><strong>Variables and Expressions:</strong>
+<ul>
+<li>You can use variables within arithmetic expressions, and <code>bash</code> will substitute their values before performing the calculation.</li>
+<li>You can also nest expressions within parentheses to control the order of operations.</li>
+</ul>
+</li>
+<li><strong>Flexibility:</strong>
+<ul>
+<li>Arithmetic expansion can be used in various contexts, such as:
+<ul>
+<li>Assignments: <code>count=$((count + 1))</code></li>
+<li>Conditions: <code>if (( a &gt; b )); then ...</code></li>
+<li>Command arguments: <code>head -n $((lines / 2)) file.txt</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="example-calculating-file-sizes">Example: Calculating File Sizes </h3>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token assign-left variable">file1_size</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">stat</span> <span class="token parameter variable">-c</span> %s file1.txt<span class="token variable">)</span></span>
+<span class="token assign-left variable">file2_size</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">stat</span> <span class="token parameter variable">-c</span> %s file2.txt<span class="token variable">)</span></span>
+
+<span class="token assign-left variable">total_size</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>file1_size <span class="token operator">+</span> file2_size<span class="token variable">))</span></span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Total size of both files: <span class="token variable">$total_size</span> bytes"</span>
+</code></pre><ul>
+<li>This script uses <code>stat</code> to get the sizes of two files, then uses arithmetic expansion to calculate and display their combined size.</li>
+</ul>
+<h3 id="example-calculating-disk-space">Example: Calculating Disk Space </h3>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Get total and used disk space in bytes</span>
+<span class="token assign-left variable">total_space</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">df</span> / <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'NR==2 {print $2}'</span><span class="token variable">)</span></span> 
+<span class="token assign-left variable">used_space</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">df</span> / <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'NR==2 {print $3}'</span><span class="token variable">)</span></span>
+
+<span class="token comment"># Calculate free space</span>
+<span class="token assign-left variable">free_space</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>total_space <span class="token operator">-</span> used_space<span class="token variable">))</span></span>
+
+<span class="token comment"># Convert to megabytes and display</span>
+<span class="token assign-left variable">free_mb</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>free_space <span class="token operator">/</span> <span class="token number">1024</span> <span class="token operator">/</span> <span class="token number">1024</span><span class="token variable">))</span></span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Free space on /: <span class="token variable">$free_mb</span> MB"</span>
+</code></pre><ul>
+<li>This script uses command substitution to get disk space information from the <code>df</code> command and then employs arithmetic expansion to calculate and display the free space in megabytes.</li>
+</ul>
+<h3 id="example-generating-random-numbers">Example: Generating Random Numbers </h3>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Generate a random number between 1 and 100</span>
+<span class="token assign-left variable">random_number</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span> <span class="token punctuation">(</span>RANDOM <span class="token operator">%</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span> <span class="token variable">))</span></span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Random number: <span class="token variable">$random_number</span>"</span>
+</code></pre><ul>
+<li>This script leverages the <code>RANDOM</code> variable (which generates a random integer between 0 and 32767) and the modulo operator (<code>%</code>) to produce a random number within a specific range.</li>
+</ul>
+<h3 id="example-manipulating-dates">Example: Manipulating Dates </h3>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Get current date and time in seconds since epoch</span>
+<span class="token assign-left variable">current_time</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%s<span class="token variable">)</span></span>
+
+<span class="token comment"># Calculate seconds in a day</span>
+<span class="token assign-left variable">seconds_per_day</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span><span class="token number">60</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">24</span><span class="token variable">))</span></span>
+
+<span class="token comment"># Calculate days since epoch</span>
+<span class="token assign-left variable">days_since_epoch</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>current_time <span class="token operator">/</span> seconds_per_day<span class="token variable">))</span></span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">"Days since epoch: <span class="token variable">$days_since_epoch</span>"</span>
+</code></pre><ul>
+<li>This script uses <code>date</code> to get the current time in seconds since the epoch (January 1, 1970) and then performs calculations to determine how many days have passed since then.</li>
+</ul>
+<h3 id="example-simple-counter-in-a-loop">Example: Simple Counter in a Loop </h3>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Count from 1 to 10</span>
+<span class="token keyword keyword-for">for</span> <span class="token variable"><span class="token punctuation">((</span> counter<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> counter<span class="token operator">&lt;=</span><span class="token number">10</span><span class="token punctuation">;</span> counter<span class="token operator">++</span> <span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token variable">$counter</span>
+<span class="token keyword keyword-done">done</span>
+</code></pre><ul>
+<li>This script showcases the C-style <code>for</code> loop, where the counter variable's initialization, condition, and increment are all expressed within the <code>for</code> statement itself, making it concise and efficient for numerical iterations.</li>
+</ul>
+<h3 id="example-processing-files">Example: Processing Files </h3>
+<ul>
+<li>Imagine you are writing a <code>bash</code> script to process a series of files in a directory.</li>
+<li>You want to keep track of how many files you've processed so far.</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token number">0</span>  <span class="token comment"># Initialize a counter variable</span>
+
+<span class="token keyword keyword-for">for</span> <span class="token for-or-select variable">filename</span> <span class="token keyword keyword-in">in</span> *.txt<span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token comment"># ... process the file ...</span>
+
+    <span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>count <span class="token operator">+</span> <span class="token number">1</span><span class="token variable">))</span></span>  <span class="token comment"># Increment the counter after each file</span>
+<span class="token keyword keyword-done">done</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">"Processed <span class="token variable">$count</span> files."</span>
+</code></pre><ul>
+<li>In the script:
+<ul>
+<li><code>count=0</code>: We start by setting the <code>count</code> variable to 0, representing that we haven't processed any files yet.</li>
+<li><code>for filename in *.txt</code>: This loop iterates over all files with the <code>.txt</code> extension in the current directory.</li>
+<li><code># ... process the file ...</code>: Here, you would place the actual commands to process each file (<em>e.g.</em>, read its contents, modify it, etc.).</li>
+<li><code>count=$((count + 1))</code>: This is where the magic of arithmetic expansion happens.
+<ul>
+<li>The expression <code>count + 1</code> calculates the new value of the counter (the current value plus 1).</li>
+<li>The <code>$(( ... ))</code> construct performs this calculation and assigns the result back to the <code>count</code> variable.</li>
+</ul>
+</li>
+<li><code>echo "Processed $count files."</code>: After the loop finishes, the script prints the final count of processed files.</li>
+</ul>
+</li>
+</ul>
+<h3 id="printing-first-half">Printing First Half </h3>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Script: show_first_half.sh</span>
+
+<span class="token comment"># Check if a filename is provided</span>
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> <span class="token parameter variable">-eq</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Error: Please provide a filename as an argument."</span> <span class="token operator">&gt;</span><span class="token file-descriptor important">&amp;2</span>  <span class="token comment"># Print to standard error</span>
+    <span class="token builtin class-name">exit</span> <span class="token number">1</span>
+<span class="token keyword keyword-fi">fi</span>
+
+<span class="token assign-left variable">filename</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$1</span>"</span>
+
+<span class="token comment"># Count the total number of lines in the file</span>
+<span class="token assign-left variable">lines</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">wc</span> <span class="token parameter variable">-l</span> <span class="token operator">&lt;</span> <span class="token string">"<span class="token variable">$filename</span>"</span><span class="token variable">)</span></span>
+
+<span class="token comment"># Calculate half the number of lines</span>
+<span class="token assign-left variable">half_lines</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>lines <span class="token operator">/</span> <span class="token number">2</span><span class="token variable">))</span></span>
+
+<span class="token comment"># Display the first half of the file</span>
+<span class="token function">head</span> <span class="token parameter variable">-n</span> <span class="token string">"<span class="token variable">$half_lines</span>"</span> <span class="token string">"<span class="token variable">$filename</span>"</span>
+</code></pre><ul>
+<li>In this script:
+<ul>
+<li><code>$(wc -l &lt; "$filename")</code>:
+<ul>
+<li>Compute the total number of lines of <code>filename</code>, from <code>$1</code>.</li>
+</ul>
+</li>
+<li><code>$(( ... ))</code>:
+<ul>
+<li>This is where the arithmetic expansion comes into play.</li>
+<li>It instructs <code>bash</code> to evaluate the expression within the double parentheses as an arithmetic operation and substitute the result into the command line.</li>
+</ul>
+</li>
+<li><code>lines / 2</code>:
+<ul>
+<li>Inside the arithmetic expansion, we have the expression <code>lines / 2</code>.</li>
+<li><code>lines</code> holds the total number of lines in <code>filename</code>, from <code>$1</code>.</li>
+<li>The <code>/ 2</code> part divides this number by 2, effectively calculating half the number of lines.</li>
+</ul>
+</li>
+<li><code>head -n ...</code>:
+<ul>
+<li>The core of the command is the <code>head</code> utility, which is designed to display the first few lines of a file.</li>
+<li>The <code>-n</code> option tells <code>head</code> how many lines to display.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="important-notes">Important Notes </h3>
+<ul>
+<li>
+<p><strong>Spaces:</strong></p>
+<ul>
+<li>Spaces within the arithmetic expression are generally ignored, so you can use them for readability.</li>
+</ul>
+</li>
+<li>
+<p><strong>No Need for <code>$</code></strong>:</p>
+<ul>
+<li>Inside <code>$(( ... ))</code>, you do not need to prefix variables with <code>$</code> for expansion.</li>
+<li><code>bash</code> automatically recognizes and expands them.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="parameter-expansion">Parameter Expansion </h2>
+<ul>
+<li>Parameter expansion is a powerful feature in <code>bash</code> that allows you to manipulate and transform the values stored in variables.</li>
+<li>It is like having a versatile toolkit for your variables, enabling you to perform various operations on them directly within your scripts.</li>
+<li>This specific syntax is a handy way to provide a default value for a variable if it is either unset (not defined) or empty.</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token variable">${var<span class="token operator">:-</span>default}</span>
+</code></pre><ul>
+<li><code>${ ... }</code>:
+<ul>
+<li>This curly brace syntax is used for parameter expansion.</li>
+<li>It tells <code>bash</code> that you want to perform some operation on the variable enclosed within the braces.</li>
+</ul>
+</li>
+<li><code>var</code>:
+<ul>
+<li>This represents the name of the variable you're working with.</li>
+</ul>
+</li>
+<li><code>:-</code>:
+<ul>
+<li>This is the parameter expansion operator that provides the default value functionality.</li>
+</ul>
+</li>
+<li><code>default</code>:
+<ul>
+<li>This is the value that will be used if <code>var</code> is unset or empty.</li>
+</ul>
+</li>
+</ul>
+<h4 id="how-it-works">How It Works </h4>
+<ul>
+<li>
+<p><strong>If <code>var</code> is set and not empty:</strong></p>
+<ul>
+<li>The expansion evaluates to the value of <code>var</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>If <code>var</code> is unset or empty:</strong></p>
+<ul>
+<li>The expansion evaluates to the value of <code>default</code>.</li>
+</ul>
+</li>
+</ul>
+<h4 id="example-12">Example </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Example of parameter expansion with default value</span>
+
+<span class="token assign-left variable">name</span><span class="token operator">=</span><span class="token string">"<span class="token variable">${1<span class="token operator">:-</span>Guest}</span>"</span>  <span class="token comment"># If the first argument is provided, use it; otherwise, use "Guest"</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">"Hello, <span class="token variable">$name</span>!"</span>
+</code></pre><ul>
+<li>In this script:
+<ul>
+<li><code>name="${1:-Guest}"</code>:
+<ul>
+<li>This line attempts to assign the first command-line argument (<code>$1</code>) to the variable <code>name</code>.</li>
+<li>However, if no argument is provided (meaning <code>$1</code> is empty), it uses the default value "Guest" instead.</li>
+</ul>
+</li>
+<li><code>echo "Hello, $name!"</code>:
+<ul>
+<li>The script then greets the user, using either their provided name or the default "Guest".</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="advanced-topics">Advanced Topics </h2>
+<h3 id="arrays">Arrays </h3>
+<ul>
+<li>In <code>bash</code> scripting, an array is a special type of variable that can store multiple values, organized in a linear sequence.</li>
+<li>Think of it as a numbered list where each item has a unique index or subscript.</li>
+<li>While <code>bash</code> arrays are limited to one dimension (unlike multidimensional arrays in some other languages), they still offer a valuable tool for managing collections of data.</li>
+</ul>
+<h4 id="creating-arrays">Creating Arrays </h4>
+<ul>
+<li><strong>Implicit Creation:</strong> Simply assign values to an array element using the subscript notation.</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>my_array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">"apple"</span>
+my_array<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">"banana"</span>
+</code></pre><ul>
+<li><strong>Explicit Declaration:</strong> Use the <code>declare</code> builtin with the <code>-a</code> option.</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">declare</span> <span class="token parameter variable">-a</span> my_array
+</code></pre><h4 id="assigning-values">Assigning Values </h4>
+<ul>
+<li><strong>Individual Assignment:</strong></li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>my_array<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">"orange"</span> 
+</code></pre><ul>
+<li><strong>List Assignment:</strong></li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token assign-left variable">my_array</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token string">"apple"</span> <span class="token string">"banana"</span> <span class="token string">"orange"</span><span class="token punctuation">)</span>
+</code></pre><ul>
+<li>This assigns "apple" to <code>my_array[0]</code>, "banana" to <code>my_array[1]</code>, and so on.</li>
+</ul>
+<h4 id="accessing-elements">Accessing Elements </h4>
+<ul>
+<li>You can access individual array elements using their subscripts:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">echo</span> <span class="token variable">${my_array<span class="token punctuation">[</span>1<span class="token punctuation">]</span>}</span>  <span class="token comment"># Output: banana</span>
+</code></pre><ul>
+<li><strong>Important:</strong> Always use curly braces <code>{}</code> around the subscript to avoid potential issues with the shell's interpretation.</li>
+</ul>
+<h4 id="special-subscripts">Special Subscripts </h4>
+<ul>
+<li>
+<p><code>@</code> or <code>*</code>: When used within curly braces (e.g., <code>${my_array[@]}</code>), these special subscripts expand to all the elements of the array.</p>
+</li>
+<li>
+<p><code>!array[@]</code>: This expands to the list of <em>indexes</em> (subscripts) used in the array, which can be helpful when dealing with sparse arrays (arrays with gaps in their indexing).</p>
+</li>
+</ul>
+<h4 id="array-operations">Array Operations </h4>
+<ul>
+<li><strong>Outputting all elements:</strong></li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">${my_array<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>"</span>
+</code></pre><ul>
+<li><strong>Getting the number of elements:</strong></li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">${<span class="token operator">#</span>my_array<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>"</span>
+</code></pre><ul>
+<li><strong>Appending elements:</strong></li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token assign-left variable">my_array</span><span class="token operator">+=</span><span class="token punctuation">(</span><span class="token string">"grape"</span><span class="token punctuation">)</span>
+</code></pre><ul>
+<li><strong>Deleting arrays or elements:</strong></li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">unset</span> my_array        <span class="token comment"># Delete the entire array</span>
+<span class="token builtin class-name">unset</span> my_array<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>     <span class="token comment"># Delete the third element</span>
+</code></pre><h4 id="example-13">Example </h4>
+<ul>
+<li>Processing a List of Files</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># Process a list of files provided as command-line arguments</span>
+
+<span class="token assign-left variable">file_list</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token string">"<span class="token variable">$@</span>"</span><span class="token punctuation">)</span>  <span class="token comment"># Store arguments in an array</span>
+
+<span class="token keyword keyword-for">for</span> <span class="token variable"><span class="token punctuation">((</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>${#file_list[@]}<span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword keyword-do">do</span>
+    <span class="token assign-left variable">filename</span><span class="token operator">=</span><span class="token variable">${file_list<span class="token punctuation">[</span>i<span class="token punctuation">]</span>}</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Processing file: <span class="token variable">$filename</span>"</span>
+    <span class="token comment"># ... your file processing logic here ...</span>
+<span class="token keyword keyword-done">done</span>
+</code></pre><ul>
+<li>This script takes a list of filenames as command-line arguments, stores them in an array <code>file_list</code>, and then uses a <code>C</code>-style <code>for</code> loop to iterate over the array, processing each file in turn.</li>
+</ul>
+<hr>
+<h2 id="exercises">Exercises </h2>
+<h3 id="brace-expansion-exercises">Brace Expansion Exercises </h3>
+<ol>
+<li><strong>File Creation:</strong> Use brace expansion to create a series of files named <code>log_server{1..3}.txt</code> with a single command.</li>
+<li><strong>Directory Structure:</strong> Generate a directory structure with subdirectories named <code>year_{2020..2023}</code> within a directory called <code>reports</code> using nested brace expansion.</li>
+<li><strong>File Renaming:</strong> Use brace expansion to rename all files in the current directory that end with <code>.old</code> to <code>.new</code>.</li>
+</ol>
+<h3 id="io-redirection-and-pipes-exercises">I/O Redirection and Pipes Exercises </h3>
+<ol>
+<li><strong>Log Processing:</strong> Write a script that takes a log file as input and uses <code>grep</code> and redirection to extract all error messages into a separate file named <code>error_log.txt</code>.</li>
+<li><strong>Sorted Output:</strong> Use the <code>ls</code> command and pipe its output to <code>sort</code> to display a sorted list of files in the current directory.</li>
+<li><strong>Counting Lines:</strong> Write a script that takes a filename as a command-line argument and uses <code>wc</code> and redirection to count the number of lines in the file, saving the result to a file named <code>line_count.txt</code>.</li>
+</ol>
+<h3 id="text-processing-utilities-exercises">Text Processing Utilities Exercises** </h3>
+<ol>
+<li><strong>IP Address Extraction:</strong> Use <code>grep</code> with a regular expression to extract all IP addresses from a log file.</li>
+<li><strong>Column Extraction:</strong> Use <code>cut</code> to extract the second and fifth columns (tab-separated) from a CSV file.</li>
+<li><strong>Case Conversion:</strong> Use <code>tr</code> to convert all uppercase letters in a text file to lowercase.</li>
+<li><strong>Search and Replace:</strong> Use <code>sed</code> to replace all occurrences of a specific word in a file with another word.</li>
+</ol>
+<h3 id="vim-exercises">Vim Exercises </h3>
+<p><em><strong>NOTE: Research required.</strong></em></p>
+<ol>
+<li><strong>Efficient Editing:</strong> Open two files side-by-side in Vim using splits and practice navigating and editing them simultaneously.</li>
+<li><strong>Search and Replace:</strong> Use Vim's search and replace functionality to find and replace a specific pattern throughout a file.</li>
+<li><strong>Macros:</strong> Record a simple macro in Vim to automate a repetitive task, such as adding line numbers to a block of text.</li>
+</ol>
+<h3 id="bash-scripting-core-concepts-exercises">Bash Scripting: Core Concepts Exercises </h3>
+<ol>
+<li><strong>Interactive Script:</strong> Write a Bash script that prompts the user for their name and age, stores the input in variables, and then prints a personalized greeting message.</li>
+<li><strong>File Handling:</strong> Write a script that checks if a file exists and, if it does, appends a line of text to it. If the file doesn't exist, create it and write the text to it.</li>
+<li><strong>Conditional Logic:</strong> Write a script that takes a number as a command-line argument and prints whether it's even or odd.</li>
+</ol>
+<h3 id="arrays-1">Arrays </h3>
+<ul>
+<li><strong>Basic Array Manipulation</strong></li>
+</ul>
+<ol>
+<li>
+<p><strong>Fruit Basket:</strong></p>
+<ul>
+<li>Create an array named <code>fruits</code> containing your five favourite fruits.</li>
+<li>Write a script to print each fruit on a separate line.</li>
+</ul>
+</li>
+<li>
+<p><strong>Number Cruncher:</strong></p>
+<ul>
+<li>Create an array named <code>numbers</code> containing 10 random integers.</li>
+<li>Write a script to calculate and display the sum and average of these numbers.</li>
+</ul>
+</li>
+<li>
+<p><strong>Word Reverser:</strong></p>
+<ul>
+<li>Write a script that takes a sentence as input and stores each word in an array.</li>
+<li>Then, print the words in reverse order.</li>
+</ul>
+</li>
+<li>
+<p><strong>File Lister:</strong></p>
+<ul>
+<li>Write a script that takes a directory name as a command-line argument and stores the names of all files in that directory in an array.</li>
+<li>Then, print the filenames along with their sizes.</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><strong>Intermediate Array Challenges</strong></li>
+</ul>
+<ol start="5">
+<li>
+<p><strong>Duplicate Detector:</strong></p>
+<ul>
+<li>Create an array with some duplicate elements.</li>
+<li>Write a script to identify and remove the duplicates, leaving only unique elements in the array.</li>
+</ul>
+</li>
+<li>
+<p><strong>Sorted Roster:</strong></p>
+<ul>
+<li>Write a script that takes a list of names as command-line arguments and stores them in an array.</li>
+<li>Sort the array alphabetically and display the sorted list.</li>
+</ul>
+</li>
+<li>
+<p><strong>Frequency Analysis:</strong></p>
+<ul>
+<li>Create an array containing a series of letters (some repeated).</li>
+<li>Write a script to count the occurrences of each unique letter and display the results.</li>
+</ul>
+</li>
+<li>
+<p><strong>Prime Number Finder:</strong></p>
+<ul>
+<li>Write a script that generates an array of the first 20 prime numbers.</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><strong>Advanced Array Adventures</strong></li>
+</ul>
+<ol start="9">
+<li>
+<p><strong>Text File Processor:</strong></p>
+<ul>
+<li>Write a script that reads a text file line by line, storing each line in an array.</li>
+<li>Then, allow the user to search for a specific word or phrase within the array and display the lines containing it.</li>
+</ul>
+</li>
+<li>
+<p><strong>Interactive Menu with Arrays:</strong></p>
+<ul>
+<li>Create a menu-driven script that uses an array to store menu options.</li>
+<li>Allow the user to select options and execute corresponding actions using the array elements.</li>
+</ul>
+</li>
+</ol>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
